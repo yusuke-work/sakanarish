@@ -1,11 +1,11 @@
 # サービス概要
-タイトル案: おさかなのすすめ
+タイトル案: さかなりっしゅ
 
 健康のため､おさかな料理を意識的に取り入れたい人向けに､
 最近の体調などに合わせて､おすすめのおさかなレシピを提案するアプリです｡
 
 # 登場人物
-- おさかな料理で迷っている人
+- おすすめのお魚料理を探している人
 
 # 課題
 - 健康のため意識的に魚料理を取り入れたいが献立に迷う｡
@@ -27,5 +27,7 @@
 - 健康に気をつけている人
 
 # 画面遷移図
-URL: 
 https://www.figma.com/file/dNJXExeUA9LG8YLE9IkN0M/画面遷移図?node-id=49%3A155
+
+# ER図
+https://drive.google.com/file/d/1hipVuF5AtSZEVNjihyQvJn45l3XEHlMt/view?usp=sharing
