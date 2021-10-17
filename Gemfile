@@ -43,10 +43,12 @@ group :development, :test do
     # エラー画面カスタマイズ
   gem 'better_errors'
   gem 'binding_of_caller'
-  
+
   # Print debug
   gem 'awesome_print'
 
+  # Test
+  gem 'rspec-rails'
 end
 
 group :development do
