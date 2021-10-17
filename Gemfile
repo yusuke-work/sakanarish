@@ -49,6 +49,10 @@ group :development, :test do
 
   # Test
   gem 'rspec-rails'
+
+  # Table/Schema
+    # shema情報書き出し
+  gem 'annotate'
 end
 
 group :development do
