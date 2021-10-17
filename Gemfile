@@ -47,8 +47,8 @@ group :development do
   gem 'pry-byebug'
 
   # エラー画面カスタマイズ
-  # gem 'better_errors'
-  # gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :production do
