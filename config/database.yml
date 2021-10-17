@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: sakanarish_production
-  username: sakanarish
-  password: <%= ENV['SAKANARISH_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
