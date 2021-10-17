@@ -33,6 +33,27 @@ gem 'dotenv-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Code analyze
+  gem 'rubocop', require:false
+  gem 'rubocop-rails', require:false
+
+  # Debugger
+  gem 'pry-byebug'
+    # エラー画面カスタマイズ
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  # Print debug
+  gem 'awesome_print'
+
+  # Test
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+
+  # Table/Schema
+    # shema情報書き出し
+  gem 'annotate'
 end
 
 group :development do
