@@ -49,6 +49,7 @@ group :development, :test do
 
   # Test
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
 
   # Table/Schema
     # shema情報書き出し
