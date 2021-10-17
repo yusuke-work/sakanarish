@@ -40,9 +40,13 @@ group :development, :test do
 
   # Debugger
   gem 'pry-byebug'
-  # エラー画面カスタマイズ
+    # エラー画面カスタマイズ
   gem 'better_errors'
   gem 'binding_of_caller'
+  
+  # Print debug
+  gem 'awesome_print'
+
 end
 
 group :development do
