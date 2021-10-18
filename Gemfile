@@ -18,7 +18,7 @@ gem 'mysql2', '>= 0.4.4'
 gem 'puma', '~> 4.1'
 
 # UI/UX
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 
 # Authentication
