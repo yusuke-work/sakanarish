@@ -22,4 +22,6 @@
 class FishNutrient < ApplicationRecord
   belongs_to :fish
   belongs_to :nutrient_category
+
+  validates :nutritional_value, presence: true
 end

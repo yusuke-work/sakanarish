@@ -8,8 +8,8 @@
 #  updated_at :datetime         not null
 #
 class NutrientCategory < ApplicationRecord
-  validates :name, presence: true
-
   has_many :question_evaluations
   has_many :fish_nutrients
+
+  validates :name, presence: true
 end
