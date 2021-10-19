@@ -9,4 +9,6 @@
 #
 class Question < ApplicationRecord
   validates :text, presence: true
+
+  has_many :question_evaluations
 end

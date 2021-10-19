@@ -24,6 +24,7 @@
 #
 class QuestionEvaluation < ApplicationRecord
   validates :evaluation, presence: true
+  
   belongs_to :question
   belongs_to :nutrient_category
   belongs_to :user

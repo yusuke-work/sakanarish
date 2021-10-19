@@ -9,4 +9,6 @@
 #
 class NutrientCategory < ApplicationRecord
   validates :name, presence: true
+
+  has_many :question_evaluations
 end
