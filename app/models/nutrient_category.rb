@@ -11,4 +11,5 @@ class NutrientCategory < ApplicationRecord
   validates :name, presence: true
 
   has_many :question_evaluations
+  has_many :fish_nutrients
 end

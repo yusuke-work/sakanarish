@@ -10,4 +10,5 @@
 #  rakuten_category_id :integer          not null
 #
 class Fish < ApplicationRecord
+  has_many :fish_nutrients
 end
