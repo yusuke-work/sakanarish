@@ -9,16 +9,4 @@ body {
   line-height: 1.7;
 }
 
-// バリデーションエラーメッセージ
-.notifications {
-  color: white;
-  text-align: center;
 
-  .notice {
-    background-color: lightBlue;
-  }
-
-  .alert {
-    background-color: red;
-  }
-}
