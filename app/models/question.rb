@@ -8,4 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Question < ApplicationRecord
+  validates :text, presence: true
 end
