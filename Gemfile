@@ -14,6 +14,9 @@ gem 'webpacker', '~> 4.0'
 gem 'mysql2', '>= 0.4.4'
 # gem 'redis', '~> 4.0'
 
+# Seeds
+gem 'seed-fu'
+
 # Application server
 gem 'puma', '~> 4.1'
 
