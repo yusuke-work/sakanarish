@@ -239,6 +239,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     sorcery (0.16.1)
       bcrypt (~> 3.1)
       oauth (~> 0.5, >= 0.5.5)
@@ -298,6 +301,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   sass-rails (>= 6)
+  seed-fu
   sorcery
   spring
   spring-watcher-listen (~> 2.0.0)
