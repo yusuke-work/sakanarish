@@ -1,0 +1,24 @@
+/* 共通部分 */
+html {
+  font-size: 100%;
+}
+body {
+  /* 書体の指定 */
+  font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック", "ヒラギノ角ゴ Pro W3", sans-selif;
+  /* 行の高さ */
+  line-height: 1.7;
+}
+
+// バリデーションエラーメッセージ
+.notifications {
+  color: white;
+  text-align: center;
+
+  .notice {
+    background-color: lightBlue;
+  }
+
+  .alert {
+    background-color: red;
+  }
+}
