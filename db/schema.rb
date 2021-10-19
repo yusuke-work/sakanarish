@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_025229) do
+ActiveRecord::Schema.define(version: 2021_10_19_071017) do
+
+  create_table "fish", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image_url", null: false
+    t.integer "rakuten_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fish_nutrients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "nutritional_value", null: false
+    t.bigint "fish_id", null: false
+    t.bigint "nutrient_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fish_id"], name: "index_fish_nutrients_on_fish_id"
+    t.index ["nutrient_category_id"], name: "index_fish_nutrients_on_nutrient_category_id"
+  end
 
   create_table "nutrient_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_10_19_025229) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "fish_nutrients", "fish"
+  add_foreign_key "fish_nutrients", "nutrient_categories"
   add_foreign_key "question_evaluations", "nutrient_categories"
   add_foreign_key "question_evaluations", "questions"
   add_foreign_key "question_evaluations", "users"
