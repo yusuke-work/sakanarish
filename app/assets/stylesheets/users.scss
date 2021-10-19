@@ -7,4 +7,7 @@ div {
     margin-bottom: 10px;
   }
 }
-
+// render後､フォームが乱れるのを防止するため
+.field_with_errors {
+  display: contents;
+}
