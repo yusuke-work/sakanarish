@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     else
       flash.now[:alert] = 'ユーザー登録に失敗しました'
       # リロードしてrenderするとhttpメソッドgetで/usersにアクセスしてしまい､ルーティングエラーになる｡
-      # 原因はturbolinksかもしれない｡
+      # 原因はturbolinksかもしれない｡一応無効化にしておいた｡
       render :new
     end
   end
