@@ -11,7 +11,6 @@
 FactoryBot.define do
   factory :fish do
     name { "MyString" }
-    image_url { "MyString" }
     rakuten_category_id { 1 }
   end
 end
