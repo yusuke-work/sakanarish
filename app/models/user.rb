@@ -30,9 +30,6 @@ class User < ApplicationRecord
 
   def self.guest
     random_value = SecureRandom.alphanumeric
-    find_or_create_by!(last_name: 'guest', first_name: 'login') do |user|
-      user.email = random_value
-      user.password = random_value
-    end
+    create!(last_name: 'guest', first_name: 'user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value)
   end
 end
