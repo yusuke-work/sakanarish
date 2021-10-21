@@ -27,4 +27,12 @@ class User < ApplicationRecord
   validates :email, presence:true, uniqueness: true
 
   has_many :question_evaluations
+
+  def self.guest
+    random_value = SecureRandom.alphanumeric
+    find_or_create_by!(last_name: 'guest', first_name: 'login') do |user|
+      user.email = random_value
+      user.password = random_value
+    end
+  end
 end

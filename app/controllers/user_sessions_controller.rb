@@ -18,4 +18,10 @@ class UserSessionsController < ApplicationController
     logout
     redirect_to root_path, notice: 'ログアウトしました'
   end
+
+  def quest_login
+    user = User.guest
+    login(user)
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
 end
