@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   
-  resources :quesitons, only: %i[index]
+  resources :questions, only: %i[index]
+  resources :question_evaluations, only: %i[index create]
+  resources :nutrient_categories, only: %i[create]
   resources :users, only: %i[new create]
 end

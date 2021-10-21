@@ -1,0 +1,8 @@
+<% @questions.each do |question| %>
+  <%= question.text %>
+<% end %>
+
+<% form_with model: @question_evaluation, local: true do |f| %>
+  
+<% end %>
+<%= link_to 'トップへ戻る', root_path%>
