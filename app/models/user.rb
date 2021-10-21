@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :email, presence:true, uniqueness: true
 
-  has_many :question_evaluations
+  has_many :question_evaluations, dependent: :destroy
 
   def self.guest
     random_value = SecureRandom.alphanumeric
