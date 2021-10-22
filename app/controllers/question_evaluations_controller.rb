@@ -8,7 +8,9 @@ class QuestionEvaluationsController < ApplicationController
   
   def create
     # 外部キーセット済み
-    @question_evaluation_1 = QuestionEvaluation.new(question_id: 1, nutrient_category_id: 1, user_id: current_user.id)
+    # @question_evaluation_1 = QuestionEvaluation.new(question_id: 1, nutrient_category_id: 1, user_id: current_user.id)
+    @question_evaluation_1 = QuestionEvaluation.new(question_evaluation_params)
+    binding.pry
   end
   # question_evaluationのレコードには外部キー(question_idとnutrient_category_idとuser_id)がある｡
   # user_id以外をすでに紐付けたまま登録したい｡
