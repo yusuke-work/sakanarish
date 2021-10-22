@@ -1,8 +1,8 @@
-<% @questions.each do |question| %>
-  <%= question.text %>
+<%= form_with model: @question_evaluation_1, local: true do |f| %>
+  <%= f.label :evaluation, "あてはまらない", {style: "display: inline-block;"} %>
+  <%= f.collection_radio_buttons :evaluation, QuestionEvaluation.evaluations, :first , :last %>
+  <%= f.label :evaluation, "あてはまる", {style: "display: inline-block;"} %>
+  <%= f.submit :evaluation %>
 <% end %>
 
-<% form_with model: @question_evaluation, local: true do |f| %>
-  
-<% end %>
 <%= link_to 'トップへ戻る', root_path%>

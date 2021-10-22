@@ -29,5 +29,5 @@ class QuestionEvaluation < ApplicationRecord
   belongs_to :nutrient_category
   belongs_to :user
 
-  enum evaluatioin: { strongly_disagree: 1, disagree: 2, neutral: 3, agree: 4, strongly_agree: 5 }
+  enum evaluation: { strongly_disagree: 1, disagree: 2, neutral: 3, agree: 4, strongly_agree: 5 }
 end
