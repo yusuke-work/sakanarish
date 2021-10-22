@@ -3,7 +3,7 @@
 # Table name: question_evaluations
 #
 #  id                   :bigint           not null, primary key
-#  evaluation           :integer          not null
+#  evaluation           :integer          default(3), not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  nutrient_category_id :bigint           not null
