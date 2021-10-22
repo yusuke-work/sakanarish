@@ -9,7 +9,7 @@ class QuestionEvaluationsController < ApplicationController
   
   def create
     # 外部キーセット(strong_parameter)
-    @question_evaluation_1 = QuestionEvaluation.new(question_evaluation_params)
+    @question_evaluation_1 = current_user.question_evaluations.build(question_evaluation_params)
     # binding.pry
 
     if @question_evaluation_1.save
@@ -27,6 +27,6 @@ class QuestionEvaluationsController < ApplicationController
 
   def question_evaluation_params
     # binding.pry
-    params.require(:question_evaluation).permit(:evaluation).merge(question_id: 1, nutrient_category_id: 1, user_id: current_user.id)
+    params.require(:question_evaluation).permit(:evaluation).merge(question_id: 1, nutrient_category_id: 1)
   end
 end
