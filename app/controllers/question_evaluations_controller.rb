@@ -3,16 +3,27 @@ class QuestionEvaluationsController < ApplicationController
   # newアクションに移動させるか
   def index
     # まずは1レコードを保存できるようにする｡
-    @question_evaluation_1 = QuestionEvaluation.new
+    # @question_evaluation_1 = QuestionEvaluation.new
     # binding.pry
+
+    # 一括保存のコレクションモデルのインスタンスを作成
+    @form = Form::QuestionEvaluation.new
   end
   
   def create
     # 外部キーセット(strong_parameter)
-    @question_evaluation_1 = current_user.question_evaluations.build(question_evaluation_params)
-    # binding.pry
+    # @question_evaluation_1 = current_user.question_evaluations.build(question_evaluation_params)
+    # # binding.pry
 
-    if @question_evaluation_1.save
+    # if @question_evaluation_1.save
+    #   redirect_to question_evaluations_path, notice: '保存しました'
+    # else
+    #   flash.now[:alert] = '失敗しました'
+    #   render :index
+    # end
+    
+    @form = Form::QuestionEvaluation.new(question_evaluation_params)
+    if @form.save
       redirect_to question_evaluations_path, notice: '保存しました'
     else
       flash.now[:alert] = '失敗しました'
@@ -27,6 +38,8 @@ class QuestionEvaluationsController < ApplicationController
 
   def question_evaluation_params
     # binding.pry
-    params.require(:question_evaluation).permit(:evaluation).merge(question_id: 1, nutrient_category_id: 1)
+    # params.require(:question_evaluation).permit(:evaluation).merge(question_id: 1, nutrient_category_id: 1)
+
+    params.requier(:form_question_evaluation_collection).permit(question_evaluations_attributes: [:evaluation])
   end
 end

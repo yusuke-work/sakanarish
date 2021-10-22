@@ -10,7 +10,7 @@ class Form::QuestionEvaluationCollection < Form::Base
   end
 
   def question_evaluations_attributes=(attributes)
-    # アンダーバーは使わない変数
+    # アンダースコアはとりあえず代入はするが、使わない変数の意味
     self.question_evaluations = attributes.map { |_, v| QuestionEvaluation.new(v)}
   end
 
