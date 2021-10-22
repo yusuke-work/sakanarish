@@ -3,17 +3,17 @@
   <%#= f.collection_radio_buttons :evaluation, QuestionEvaluation.evaluations, :first , :last %>
   <%#= f.label :evaluation, "あてはまる", {style: "display: inline-block;"} %>
   <%#= f.submit :evaluation %>
-
-  <%= f.radio_button :category_1, 5 %>
-  <%= f.label :category_1, "とてもあてはまる", {style: "display: inline-block;"} %>
-  <%= f.radio_button :category_1, 4 %>
-  <%= f.label :category_1, "すこしあてはまる", {tyle: "display: inline-block;"} %>
-  <%= f.radio_button :category_1, 3, checked: true %>
-  <%= f.label :category_1, "どちらでもない", {style: "display: inline-block;"} %>
-  <%= f.radio_button :category_1, 2 %>
-  <%= f.label :category_1, "あまりあてはまらない", {style: "display: inline-block;"} %>
-  <%= f.radio_button :category_1, 1 %>
-  <%= f.label :category_1, "まったくあてはまらない", {style: "display: inline-block;"} %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.radio_button :evaluation, 5 %>
+  <%= f.label :evaluation, "とてもあてはまる", {style: "display: inline-block;"} %>
+  <%= f.radio_button :evaluation, 4 %>
+  <%= f.label :evaluation, "すこしあてはまる", {tyle: "display: inline-block;"} %>
+  <%= f.radio_button :evaluation, 3, checked: true %>
+  <%= f.label :evaluation, "どちらでもない", {style: "display: inline-block;"} %>
+  <%= f.radio_button :evaluation, 2 %>
+  <%= f.label :evaluation, "あまりあてはまらない", {style: "display: inline-block;"} %>
+  <%= f.radio_button :evaluation, 1 %>
+  <%= f.label :evaluation, "まったくあてはまらない", {style: "display: inline-block;"} %>
   <%= f.submit  %>
 <% end %>
 
