@@ -5,15 +5,15 @@
   <%#= f.submit :evaluation %>
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.radio_button :evaluation, 5 %>
-  <%= f.label :evaluation, "とてもあてはまる", {style: "display: inline-block;"} %>
+  <%= f.label :evaluation_5, "とてもあてはまる", {style: "display: inline-block;"} %>
   <%= f.radio_button :evaluation, 4 %>
-  <%= f.label :evaluation, "すこしあてはまる", {tyle: "display: inline-block;"} %>
+  <%= f.label :evaluation_4, "すこしあてはまる", {tyle: "display: inline-block;"} %>
   <%= f.radio_button :evaluation, 3, checked: true %>
-  <%= f.label :evaluation, "どちらでもない", {style: "display: inline-block;"} %>
+  <%= f.label :evaluation_3, "どちらでもない", {style: "display: inline-block;"} %>
   <%= f.radio_button :evaluation, 2 %>
-  <%= f.label :evaluation, "あまりあてはまらない", {style: "display: inline-block;"} %>
+  <%= f.label :evaluation_2, "あまりあてはまらない", {style: "display: inline-block;"} %>
   <%= f.radio_button :evaluation, 1 %>
-  <%= f.label :evaluation, "まったくあてはまらない", {style: "display: inline-block;"} %>
+  <%= f.label :evaluation_1, "まったくあてはまらない", {style: "display: inline-block;"} %>
   <%= f.submit  %>
 <% end %>
 
