@@ -11,6 +11,7 @@
 #
 class Fish < ApplicationRecord
   has_many :fish_nutrients
+  has_many :nutrient_categories, through: :fish_nutrients
 
   validates :name, presence: true
   validates :image_url, presence: true
