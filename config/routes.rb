@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   
   resources :nutrient_categories, only: %i[create]
   resources :questions, only: %i[index]
-  resources :question_evaluations, only: %i[index create]
+  resources :question_evaluations, only: %i[new create]
   resources :users, only: %i[new create]
 end
