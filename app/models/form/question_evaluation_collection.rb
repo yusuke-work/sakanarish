@@ -1,13 +1,14 @@
 class Form::QuestionEvaluationCollection < Form::Base
-  DEFAULT_ITEM_COUNT = 13 # 作成したい登録フォームの数を指定
+   # 作成したい登録フォームの数を指定
+  DEFAULT_ITEM_COUNT = 13
   # インスタンスが抱える属性を定義
   attr_accessor :question_evaluations, :user
 
   def initialize(attributes = {})
     # スーパークラスのinitializeメソッドを呼び出す?
     super attributes
-    # question_evaluationsという変数に一つの配列を入れている｡各要素はレコード
-    # 中身は空のレコードが13個
+    # question_evaluationsという変数に一つの配列を入れている｡
+    # 各要素は空の13個のレコード
     self.question_evaluations = DEFAULT_ITEM_COUNT.times.map { QuestionEvaluation.new() } unless self.question_evaluations.present?
     # 配列の値を変更(self.question_evaluations[配列要素番号][:キー名] = 〇〇)
     self.question_evaluations[0][:question_id] = 1
@@ -48,19 +49,17 @@ class Form::QuestionEvaluationCollection < Form::Base
 
     self.question_evaluations[12][:question_id] = 13
     self.question_evaluations[12][:nutrient_category_id] = 11
-    # binding.pry
   end
-    
+
+  # 属性に値を代入
   def user_attributes=(attributes)
-    # userにcurrent_user情報が入る
-    # binding.pry
+    # current_user情報
     self.user = attributes
   end
 
+  # 属性に値を代入
   def question_evaluations_attributes=(attributes)
     # アンダースコアはとりあえず代入はするが、使わない変数の意味
-    # user_idにはuser属性のidをセット
-    # nutrient_category_idとquestion_idはセットできていない どのタイミングでそれぞれセットするか
     self.question_evaluations = attributes.map { |_, v| QuestionEvaluation.new(v.merge(user_id: user.id))}
   end
 
