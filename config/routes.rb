@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   post 'guest_login', to: 'user_sessions#guest_login'
   
-  resources :questions, only: %i[index]
-  resources :question_evaluations, only: %i[index create]
   resources :nutrient_categories, only: %i[create]
+  resources :questions, only: %i[index]
+  resources :question_evaluations, only: %i[new create]
   resources :users, only: %i[new create]
 end

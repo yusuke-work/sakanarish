@@ -23,7 +23,7 @@ class UserSessionsController < ApplicationController
     # ゲストユーザーで新規作成
     user = User.guest
     auto_login(user)
-    redirect_to question_evaluations_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to new_question_evaluation_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   def guest_destroy
