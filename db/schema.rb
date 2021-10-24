@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_045845) do
+ActiveRecord::Schema.define(version: 2021_10_24_064257) do
 
   create_table "fish", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_045845) do
   end
 
   create_table "question_evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "evaluation", default: 3, null: false
+    t.integer "evaluation", null: false
     t.bigint "question_id", null: false
     t.bigint "nutrient_category_id", null: false
     t.bigint "user_id", null: false
