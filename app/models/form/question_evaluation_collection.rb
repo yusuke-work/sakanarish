@@ -6,7 +6,8 @@ class Form::QuestionEvaluationCollection < Form::Base
   def initialize(attributes = {})
     # スーパークラスのinitializeメソッドを呼び出すattributesは引数
     super attributes
-    self.question_evaluations = DEFAULT_ITEM_COUNT.times.map { QuestionEvaluation.new } unless self.question_evaluations.present?
+    # current_userが使えない
+    self.question_evaluations = DEFAULT_ITEM_COUNT.times.map { QuestionEvaluation.new() } unless self.question_evaluations.present?
   end
 
   def question_evaluations_attributes=(attributes)
@@ -14,15 +15,20 @@ class Form::QuestionEvaluationCollection < Form::Base
     self.question_evaluations = attributes.map { |_, v| QuestionEvaluation.new(v)}
   end
 
-  def seve
+  def save
     # 全ての属性にseveが成功しないとロールバックさせる
     # トランザクション
+    binding.pry
+
     QuestionEvaluation.transaction do
       self.question_evaluations.map(&:save!)
     end
       return true
-    rescue => end
+    rescue => e
       return false
   end
 
+  def current_user
+    
+  end
 end
