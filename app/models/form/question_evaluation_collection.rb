@@ -1,6 +1,6 @@
 class Form::QuestionEvaluationCollection < Form::Base
    # 作成したい登録フォームの数を指定
-  DEFAULT_ITEM_COUNT = 13
+  QUESTION_EVALUATION_COUNT = 13
   # インスタンスが抱える属性を定義
   attr_accessor :question_evaluations, :user
 
@@ -9,7 +9,7 @@ class Form::QuestionEvaluationCollection < Form::Base
     super attributes
     # question_evaluationsという変数に一つの配列を入れている｡
     # 各要素は空の13個のレコード
-    self.question_evaluations = DEFAULT_ITEM_COUNT.times.map { QuestionEvaluation.new() } unless self.question_evaluations.present?
+    self.question_evaluations = QUESTION_EVALUATION_COUNT.times.map { QuestionEvaluation.new() } unless self.question_evaluations.present?
     # 配列の値を変更(self.question_evaluations[配列要素番号][:キー名] = 〇〇)
     self.question_evaluations[0][:question_id] = 1
     self.question_evaluations[0][:nutrient_category_id] = 1
