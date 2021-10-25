@@ -9,6 +9,8 @@ gem 'rails', '~> 6.0.4', '>= 6.0.4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
+gem "chartkick"
+# gem 'chart-js-rails'
 
 # Database
 gem 'mysql2', '>= 0.4.4'

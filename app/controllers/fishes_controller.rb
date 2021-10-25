@@ -6,7 +6,6 @@ class FishesController < ApplicationController
     # fish_nutrientsテーブルを含有量で並び替えてカロリのみ
     fish_calorie_desc = FishNutrient.where(nutrient_category_id: 1).order(nutritional_value: :desc)
     
-    
     # カロリーの評価値で7匹の魚を取得する
 
     # ログインユーザーの栄養カテゴリごとに評価値を足す
@@ -46,7 +45,7 @@ class FishesController < ApplicationController
     # 最大の栄養カテゴリの魚栄養レコードを取得
     fishes7 = fishes7.where(nutrient_category_id: max_k_v[0]).order(nutritional_value: :desc)
     
-    # 最大の評価値によって一匹を取得
+    # 最大の評価値によって一匹を取得(返り値は数値fish_id)
     fish_id = case max_k_v[1]
               when 2
                 fishes7[6].fish_id
@@ -63,5 +62,38 @@ class FishesController < ApplicationController
               when max_k_v[1] > 8
                 fishes7[0].fish_id
               end
+    
+
+
+    # 魚の栄養を出す(nutrient_category_idをキーにして各栄養をハッシュにする)
+    # 対象の魚に絞って全てのカラムのレコードを取得
+    @fish_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.*").where(id: fish_id)
+    
+    # 魚の名前を出す
+    # @fish_name = [] << @fish_nutrients.first.name
+    @fish_name = @fish_nutrients.first.name
+    
+    # レーダーチャートの各栄養値
+    @data_values = @fish_nutrients.map(&:nutritional_value)
+    # binding.pry
+    # @data_values = @fish_nutrients.delete(0)
+
+
+    # レーダーチャートのラベル
+    @data_keys = [
+      'カロリー',
+      'タンパク質',
+      '脂質',
+      '炭水化物',
+      'カルシウム',
+      '亜鉛',
+      'ビタミンA',
+      'ビタミンD',
+      'ビタミンE',
+      'ビタミンB12',
+      'EPA・DHA'
+    ]
+    # binding.pry
+
   end
 end
