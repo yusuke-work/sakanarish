@@ -6,7 +6,6 @@ class FishesController < ApplicationController
     # fish_nutrientsテーブルを含有量で並び替えてカロリのみ
     fish_calorie_desc = FishNutrient.where(nutrient_category_id: 1).order(nutritional_value: :desc)
     
-    
     # カロリーの評価値で7匹の魚を取得する
 
     # ログインユーザーの栄養カテゴリごとに評価値を足す
@@ -72,9 +71,12 @@ class FishesController < ApplicationController
 
     # レーダーチャートの各栄養値
     @data_values = @fish_nutrients.map(&:nutritional_value)
+    # binding.pry
+    # @data_values = @fish_nutrients.delete(0)
 
     # 魚の名前を出す
-    @fish_name = [] << @fish_nutrients.first.name
+    # @fish_name = [] << @fish_nutrients.first.name
+    @fish_name = @fish_nutrients.first.name
 
     # レーダーチャートのラベル
     @data_keys = [
@@ -88,7 +90,7 @@ class FishesController < ApplicationController
       'ビタミンD',
       'ビタミンE',
       'ビタミンB12',
-      'EPAとDA'
+      'EPA・DHA'
     ]
     # binding.pry
 
