@@ -60,6 +60,9 @@ group :development, :test do
   # Table/Schema
     # shema情報書き出し
   gem 'annotate'
+
+  # Http
+  gem 'httpclient'
 end
 
 group :development do
