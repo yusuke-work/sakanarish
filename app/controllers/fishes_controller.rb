@@ -46,7 +46,7 @@ class FishesController < ApplicationController
     # 最大の栄養カテゴリの魚栄養レコードを取得
     fishes7 = fishes7.where(nutrient_category_id: max_k_v[0]).order(nutritional_value: :desc)
     
-    # 最大の評価値によって一匹を取得
+    # 最大の評価値によって一匹を取得(返り値は数値fish_id)
     fish_id = case max_k_v[1]
               when 2
                 fishes7[6].fish_id
@@ -63,5 +63,18 @@ class FishesController < ApplicationController
               when max_k_v[1] > 8
                 fishes7[0].fish_id
               end
+    
+    # # 魚の名前を出す
+    @fish_name = Fish.find(fish_id).name
+
+    # 魚の栄養を出す(nutrient_category_idをキーにして各栄養をハッシュにする)
+    @fish_nutrients = FishNutrient.where(fish_id: fish_id)
+
+    # 対象の魚に絞って､二つのテーブルを結合し､カラムを全て取得
+    # fish_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.*").where(id: fish_id)
+    # fish_nutrients.find(fish_id)
+    # 名前を取得するにはレコードを一つだけ取ってくる必要がある
+    
+    # binding.pry
   end
 end
