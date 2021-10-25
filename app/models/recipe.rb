@@ -22,4 +22,10 @@
 #
 class Recipe < ApplicationRecord
   belongs_to :fish
+
+  validates :image_url, presence: true
+  validates :indication, presence: true
+  validates :material, presence: true
+  validates :title, presence: true
+  validates :url, presence: true
 end
