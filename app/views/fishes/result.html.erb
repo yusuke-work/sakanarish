@@ -1,22 +1,17 @@
-<canvas id="myChart" width="100" height="100"></canvas>
+<canvas id="myChart" width="100" height="100" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label="<%= @fish_name %>" ></canvas>
+<%# binding.pry %>
 <script>
-var ctx = document.getElementById("myChart");
+var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'radar',
   data: {
-    labels: ["Japanese", "Mathematics", "English", "Social studies", "Science"],
+    labels: JSON.parse(ctx.canvas.dataset.labels),
     datasets: [
       {
-      label: 'A_kun',
+      label: JSON.parse(ctx.canvas.dataset.label),
       backgroundColor: "rgba(0,0,80,0.4)",
       borderColor: "rgba(0,0,80,1)",
-      data: [80, 90, 60, 70, 100, 70]
-      }, 
-      {
-      label: 'B_kun',
-      backgroundColor: "rgba(0,255,0,0.4)",
-      borderColor: "rgba(0,255,0,1)",
-      data: [90, 75, 80, 65, 80, 70]
+      data: JSON.parse(ctx.canvas.dataset.data)
       }
     ]
   },
@@ -30,3 +25,28 @@ var myChart = new Chart(ctx, {
   }
 });
 </script>
+// <script>
+// var ctx = document.getElementById("myChart");
+// var myChart = new Chart(ctx, {
+//   type: 'radar',
+//   data: {
+//     labels: ["カロリー", "タンパク質", "脂質", "炭水化物", "カルシウム", "亜鉛", "ビタミンA", "ビタミンD", "ビタミンE", "ビタミンB12", "EPAとDA"],
+//     datasets: [
+//       {
+//       label: 'A_kun',
+//       backgroundColor: "rgba(0,0,80,0.4)",
+//       borderColor: "rgba(0,0,80,1)",
+//       data: [80, 90, 860, 70, 100, 70]
+//       }
+//     ]
+//   },
+//   options: {
+//     scale: {
+//         ticks: {
+//             suggestedMin: 0,
+//             suggestedMax: 100
+//         }
+//     }
+//   }
+// });
+// </script>
