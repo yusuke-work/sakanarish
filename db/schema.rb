@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_064551) do
+ActiveRecord::Schema.define(version: 2021_10_25_135852) do
 
   create_table "fish", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 2021_10_24_064551) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recipes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "image_url", null: false
+    t.string "title", null: false
+    t.string "material", null: false
+    t.string "indication", null: false
+    t.string "url", null: false
+    t.bigint "fish_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fish_id"], name: "index_recipes_on_fish_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -70,4 +82,5 @@ ActiveRecord::Schema.define(version: 2021_10_24_064551) do
   add_foreign_key "question_evaluations", "nutrient_categories"
   add_foreign_key "question_evaluations", "questions"
   add_foreign_key "question_evaluations", "users"
+  add_foreign_key "recipes", "fish"
 end
