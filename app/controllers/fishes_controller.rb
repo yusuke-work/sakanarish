@@ -68,15 +68,16 @@ class FishesController < ApplicationController
     # 魚の栄養を出す(nutrient_category_idをキーにして各栄養をハッシュにする)
     # 対象の魚に絞って全てのカラムのレコードを取得
     @fish_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.*").where(id: fish_id)
-
+    
+    # 魚の名前を出す
+    # @fish_name = [] << @fish_nutrients.first.name
+    @fish_name = @fish_nutrients.first.name
+    
     # レーダーチャートの各栄養値
     @data_values = @fish_nutrients.map(&:nutritional_value)
     # binding.pry
     # @data_values = @fish_nutrients.delete(0)
 
-    # 魚の名前を出す
-    # @fish_name = [] << @fish_nutrients.first.name
-    @fish_name = @fish_nutrients.first.name
 
     # レーダーチャートのラベル
     @data_keys = [
