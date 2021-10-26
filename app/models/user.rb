@@ -19,6 +19,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   
   has_many :question_evaluations, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -30,7 +31,9 @@ class User < ApplicationRecord
 
 
   def self.guest
+    # ランダム数値作成
     random_value = SecureRandom.alphanumeric
+    # ゲストユーザー作成
     create!(last_name: 'guest', first_name: 'user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value)
   end
 end
