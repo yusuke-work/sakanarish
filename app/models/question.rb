@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Question < ApplicationRecord
-  validates :text, presence: true
-
   has_many :question_evaluations
+  
+  validates :text, presence: true
 end
