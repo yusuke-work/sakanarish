@@ -80,8 +80,8 @@ class RecipesController < ApplicationController
       end
     end
 
-    # レコード削除
-    Recipe.destroy_all
+    # レコード削除してしまったらお気に入り登録したレシピが消えてしまう｡
+    # Recipe.destroy_all
 
     # 各レシピを4つずつ外部キーの連番を付けてDBに保存
     fish_ids = [*1..35]

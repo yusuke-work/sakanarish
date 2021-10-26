@@ -22,6 +22,7 @@
 #
 class Recipe < ApplicationRecord
   belongs_to :fish
+  has_many :favorites, dependent: :destroy
 
   validates :image_url, presence: true
   validates :indication, presence: true
