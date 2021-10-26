@@ -31,7 +31,9 @@ class User < ApplicationRecord
 
 
   def self.guest
+    # ランダム数値作成
     random_value = SecureRandom.alphanumeric
+    # ゲストユーザー作成
     create!(last_name: 'guest', first_name: 'user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value)
   end
 end

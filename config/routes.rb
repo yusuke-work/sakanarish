@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   root to: 'static_pages#top'
 
   get 'login', to: 'user_sessions#new'
