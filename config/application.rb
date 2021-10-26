@@ -34,5 +34,8 @@ module Sakanarish
 
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+
+    # libを読み込むように設定
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
