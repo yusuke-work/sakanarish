@@ -1,6 +1,6 @@
 class Api::RakutenRecipe < ApplicationRecord
-  INTERVAL = 1
-  
+  INTERVAL = 1.5
+
   def self.recipe.get
     # 異なるパラメータで複数回apiを叩く
     # 取得した全てのJSONデータを配列に投入
@@ -45,13 +45,13 @@ class Api::RakutenRecipe < ApplicationRecord
       "11-78-841",
       "11-78-327"
     ]
-    
+
     # APIのGETリクエスト先を指定
-    url = 'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?'
+    # url = 'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?'
 
     # JSONのリクエストボディのみ配列で取り出す
     response_bodys = category_ids.map do |category_id|
-                      sleep(1.5)
+                      sleep(INTERVAL)
                       # httpクライアントのインスタンスを作成
                       http_client = HTTPClient.new
 
@@ -60,11 +60,11 @@ class Api::RakutenRecipe < ApplicationRecord
                         # カテゴリid
                         categoryId: category_id,
                         # アプリid
-                        applicationId: 1031594119620209416
+                        applicationId: ENV['APPLICATION_ID']
                       }
 
                       # getリクエストでJSON取得(叩く)
-                      response = http_client.get(url, query)
+                      response = http_client.get(ENV['URL'], query)
                       # JSONのリクエストボディのみ取り出す
                       response.body
                     end
@@ -74,7 +74,6 @@ class Api::RakutenRecipe < ApplicationRecord
       JSON.parse(response_body)
     end
 
-    
     # 必要なデータのみ配列のまま成形
     responses = responses.map do |response|
       res = response["result"]
@@ -131,10 +130,7 @@ class Api::RakutenRecipe < ApplicationRecord
             updated_at: Time.current
           }
         ]
-        
         Recipe.insert_all(recipes)
-        # upsert_all
-        # insert_all
     end
   end
 end
