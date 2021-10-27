@@ -25,8 +25,13 @@
   </div><!-- /.home-content -->
 </div><!-- /#home -->
 
-  <%= link_to '診断する(ゲストログイン)', guest_login_path, method: :post, class: 'button' %>
-  <%# <a href="menu.html" class="button">メニューを見る</a> %>
+  <!-- ボタンを押す時に未ログインもしくはゲストユーザー(!current_user||current_user.guest?)ならゲストログインさせる -->
+  <!-- ボタンを押す時に本アカでログイン済みならそのまま診断ページへ -->
+  <% if !current_user||current_user.guest? %>
+    <%= link_to '診断する(ゲストログインする)', guest_login_path, method: :post, class: 'button' %>
+  <% else %>
+    <%= link_to '診断する(ゲストログインしない)', new_question_evaluation_path, class: 'button' %>
+  <% end %>
 
 <footer>
   <div class="wrapper">

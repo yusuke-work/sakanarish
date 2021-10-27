@@ -33,7 +33,7 @@ class User < ApplicationRecord
   def self.guest
     # ランダム数値作成
     random_value = SecureRandom.alphanumeric
-    # ゲストユーザー作成
-    create!(name: 'guest_user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value)
+    # ゲストユーザー作成(roleでgestを判断する)
+    create!(name: 'guest_user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value, role: 10)
   end
 end
