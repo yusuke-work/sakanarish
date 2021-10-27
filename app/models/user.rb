@@ -5,8 +5,7 @@
 #  id               :bigint           not null, primary key
 #  crypted_password :string(255)
 #  email            :string(255)      not null
-#  first_name       :string(255)      not null
-#  last_name        :string(255)      not null
+#  name             :string(255)      not null
 #  salt             :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -25,8 +24,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
-  validates :last_name, presence: true
-  validates :first_name, presence: true
+  validates :name, presence: true
   validates :email, presence:true, uniqueness: true
 
 
@@ -34,6 +32,6 @@ class User < ApplicationRecord
     # ランダム数値作成
     random_value = SecureRandom.alphanumeric
     # ゲストユーザー作成
-    create!(last_name: 'guest', first_name: 'user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value)
+    create!(name: 'guest_user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value)
   end
 end
