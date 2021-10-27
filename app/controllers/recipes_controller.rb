@@ -71,12 +71,12 @@ class RecipesController < ApplicationController
     responses = response_bodys.map do |response_body|
       JSON.parse(response_body)
     end
-
+# binding.pry
     # 必要なデータのみ配列のまま成形
     responses = responses.map do |response|
-      res = response["result"]
-      res.map do |res|
-        res.values_at("foodImageUrl", "recipeTitle", "recipeMaterial", "recipeIndication", "recipeUrl")
+      results = response["result"]
+      results.map do |result|
+        result.values_at("foodImageUrl", "recipeTitle", "recipeMaterial", "recipeIndication", "recipeUrl")
       end
     end
 

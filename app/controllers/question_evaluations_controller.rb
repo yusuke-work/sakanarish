@@ -7,8 +7,13 @@ class QuestionEvaluationsController < ApplicationController
   def create
     # user_attributesはコレクションモデルの属性｡ログインuser情報をセット
     @form = Form::QuestionEvaluationCollection.new({ user_attributes: current_user }.merge(question_evaluation_params))
+    # binding.pry
+    # if current_user.@form
     if @form.save
-      redirect_to result_path, notice: '保存しました'
+      # 計算ロジックのアクションに飛ぶ
+      # session[:result] = 10
+      # redirect_to result_path, notice: '保存しました'
+      redirect_to calculation_path, notice: '保存しました'
     else
       flash.now[:alert] = '失敗しました'
       render :index
