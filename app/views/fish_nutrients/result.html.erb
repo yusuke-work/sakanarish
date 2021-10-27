@@ -7,42 +7,6 @@
 
   <canvas id="myChart" width="400" height="200" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label="<%= @fish.name %>" > </canvas>
 
-
-<script>
-  var ctx = document.getElementById("myChart").getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: JSON.parse(ctx.canvas.dataset.labels),
-      datasets: [
-        {
-        // label: JSON.parse(ctx.canvas.dataset.label),
-        backgroundColor: [
-                "#BB5179",
-                "#FAFF67",
-                "#58A27C",
-                "#3C00FF"
-            ],
-        // borderColor: "rgba(0,0,80,1)",
-        data: JSON.parse(ctx.canvas.dataset.data)
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: '血液型 割合'
-      },
-      scale: {
-        ticks: {
-          suggestedMin: 0,
-              suggestedMax: 100,
-          }
-      }
-    }
-  });
-</script>
-
 <% @recipes.each do |recipe| %>
   <%= link_to recipe.url do %>
     <%= image_tag recipe.image_url %>
@@ -53,3 +17,4 @@
   <%= recipe.indication %>
 <% end %>
 </div>
+<%= javascript_pack_tag 'chart' %>
