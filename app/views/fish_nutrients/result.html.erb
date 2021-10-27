@@ -1,0 +1,20 @@
+<div class="container">
+<h1>診断結果</h1>
+<h2>あなたのおすすめは..</h2>
+  <%= @fish.name %>です!<br>
+
+  <%= image_tag @fish.image_url %>
+
+  <canvas id="myChart" width="400" height="200" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label="<%= @fish.name %>" > </canvas>
+
+<% @recipes.each do |recipe| %>
+  <%= link_to recipe.url do %>
+    <%= image_tag recipe.image_url %>
+  <% end %>
+
+  <%= recipe.title %>
+  <%= recipe.material.split(',')[0] %>
+  <%= recipe.indication %>
+<% end %>
+</div>
+<%= javascript_pack_tag 'chart' %>

@@ -5,7 +5,7 @@ class CreateFavorites < ActiveRecord::Migration[6.0]
       t.references :recipe, null: false, foreign_key: true
 
       # user_idとrecipe_idの重複を防ぐ｡
-      t.index [:user_id, :board_id], unique: true
+      t.index [:user_id, :recipe_id], unique: true
       t.timestamps
     end
   end

@@ -4,13 +4,14 @@ class Form::QuestionEvaluationCollection < Form::Base
   # インスタンスが抱える属性を定義
   attr_accessor :question_evaluations, :user
 
+  # 初期化
   def initialize(attributes = {})
     # スーパークラスのinitializeメソッドを呼び出す?
     super attributes
     # question_evaluationsという変数に一つの配列を入れている｡
     # 各要素は空の13個のレコード
     self.question_evaluations = QUESTION_EVALUATION_COUNT.times.map { QuestionEvaluation.new() } unless self.question_evaluations.present?
-    # 配列の値を変更(self.question_evaluations[配列要素番号][:キー名] = 〇〇)
+    # 各質問の外部キーをセット(self.question_evaluations[配列要素番号][:キー名] = 〇〇)
     self.question_evaluations[0][:question_id] = 1
     self.question_evaluations[0][:nutrient_category_id] = 1
 
@@ -64,6 +65,9 @@ class Form::QuestionEvaluationCollection < Form::Base
   end
 
   def save
+    # DBに保存できるのはユーザーごとにワンセットのみ
+    QuestionEvaluation.where(user_id: user.id).destroy_all if QuestionEvaluation.find_by(user_id: user.id).present?
+    # 順番に登録する
     # 全ての属性にseveが成功しないとロールバックさせる
     QuestionEvaluation.transaction do
       self.question_evaluations.map(&:save!)

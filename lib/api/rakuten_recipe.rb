@@ -1,6 +1,4 @@
 class Api::RakutenRecipe < ApplicationRecord
-  INTERVAL = 1.5
-
   def self.recipe.get
     # 異なるパラメータで複数回apiを叩く
     # 取得した全てのJSONデータを配列に投入
