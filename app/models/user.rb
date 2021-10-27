@@ -6,6 +6,7 @@
 #  crypted_password :string(255)
 #  email            :string(255)      not null
 #  name             :string(255)      not null
+#  role             :integer          default(0), not null
 #  salt             :string(255)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -16,7 +17,7 @@
 #
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  
+
   has_many :question_evaluations, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -27,6 +28,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence:true, uniqueness: true
 
+  enum role: { general: 0, guest: 10, admin: 20 }
 
   def self.guest
     # ランダム数値作成
