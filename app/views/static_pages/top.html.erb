@@ -13,7 +13,7 @@
         <% if current_user %>
           <li><%= current_user.name %></li>
         <% end %>
-        <li><%= link_to 'お気に入りしたレシピ', recipe_favorites_path %></li>
+        <li><%= link_to 'マイページ', my_pages_path %></li>
         <li><%= link_to '新規登録', new_user_path %></li>
         <li><%= link_to 'ログイン', login_path %></li>
         <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
