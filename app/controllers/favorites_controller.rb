@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   def create
+    # 同じレシピをお気に入りするとエラーになる｡viewで条件分岐するか
     # gurestなら
     if current_user.guest?
       redirect_to result_path, alert: 'ログインしてください'

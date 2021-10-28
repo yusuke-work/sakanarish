@@ -96,4 +96,10 @@ class FishNutrientsController < ApplicationController
     @recipes = @fish.recipes
     # binding.pry
   end
+
+  # お気に入りしたレシピ一覧
+  def favorites
+    # binding.pry
+    @favorite_recipes = current_user.recipes
+  end
 end

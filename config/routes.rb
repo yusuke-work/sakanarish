@@ -8,12 +8,14 @@ Rails.application.routes.draw do
 
   get 'calculation', to: 'fish_nutrients#calculation'
   get 'result', to: 'fish_nutrients#result'
+  # お気に入りしたレシピ
+  get 'recipe/favorites', to: 'fish_nutrients#favorites'
 
   # apiのディレクトで叩くようにしたらコントローラはいらないかも
   get 'recipe', to: 'recipes#recipe'
+  
 
-  resources :favorites, only: %i[create destroy]
-
+  resources :favorites, only: %i[create destroy] 
   resources :users, only: %i[new create]
   resources :question_evaluations, only: %i[new create]
 

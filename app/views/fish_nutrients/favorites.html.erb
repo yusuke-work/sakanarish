@@ -1,0 +1,16 @@
+<h1>お気に入りしたレシピ一覧</h1>
+<% @favorite_recipes.each do |favorite_recipe| %>
+  <%= link_to 'お気に入り', favorites_path(recipe_id: favorite_recipe), method: :post, class: 'button' %>
+  <!-- 以下の書き方は､表示されているレシピがfavoritesテーブルに存在していなかったらエラーになる?条件分岐で出したり出さなかったりする? -->
+  <%#= link_to 'お気に入り解除', favorite_path(current_user.favorites.find_by(recipe_id: recipe)), method: :delete, class: 'button' %>
+  <%= link_to 'お気に入り解除', favorite_path(favorite_recipe), method: :delete, class: 'button' %>
+
+  <%= link_to favorite_recipe.url do %>
+    <%= image_tag favorite_recipe.image_url %>
+  <% end %>
+
+  <%= favorite_recipe.title %>
+  <%= favorite_recipe.material %>
+  <%= favorite_recipe.indication %>
+<% end %>
+<%= link_to 'トップへ戻る', root_path%>

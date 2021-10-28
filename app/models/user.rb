@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :question_evaluations, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  # お気に入りしたレシピを取得
+  has_many :recipes, through: :favorites
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
