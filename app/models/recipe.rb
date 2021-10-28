@@ -31,4 +31,5 @@ class Recipe < ApplicationRecord
   validates :material, presence: true
   validates :title, presence: true
   validates :url, presence: true
+  validates :original_recipe_id, uniqueness: true
 end

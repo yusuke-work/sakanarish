@@ -73,7 +73,7 @@ class RecipesController < ApplicationController
     responses = responses.map do |response|
       results = response["result"]
       results.map do |result|
-        result.values_at("foodImageUrl", "recipeTitle", "recipeMaterial", "recipeIndication", "recipeUrl")
+        result.values_at("foodImageUrl", "recipeTitle", "recipeMaterial", "recipeIndication", "recipeUrl", "recipeId")
       end
     end
 
@@ -91,6 +91,7 @@ class RecipesController < ApplicationController
             material: recipe[0][2].join(','),
             indication: recipe[0][3],
             url: recipe[0][4],
+            original_recipe_id: recipe[0][5],
             created_at: Time.current,
             updated_at: Time.current
           },
@@ -101,6 +102,7 @@ class RecipesController < ApplicationController
             material: recipe[1][2].join(','),
             indication: recipe[1][3],
             url: recipe[1][4],
+            original_recipe_id: recipe[1][5],
             created_at: Time.current,
             updated_at: Time.current
           },
@@ -111,6 +113,7 @@ class RecipesController < ApplicationController
             material: recipe[2][2].join(','),
             indication: recipe[2][3],
             url: recipe[2][4],
+            original_recipe_id: recipe[2][5],
             created_at: Time.current,
             updated_at: Time.current
           },
@@ -121,12 +124,13 @@ class RecipesController < ApplicationController
             material: recipe[3][2].join(','),
             indication: recipe[3][3],
             url: recipe[3][4],
+            original_recipe_id: recipe[3][5],
             created_at: Time.current,
             updated_at: Time.current
           }
         ]
-        
-        Recipe.insert_all(recipes)
+        # original_recipe_idにunique制約を付けているので､同じレシピがあった場合はupdateする
+        Recipe.upsert_all(recipes)
     end
   end
 end
