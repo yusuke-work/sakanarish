@@ -1,21 +1,20 @@
 class FavoritesController < ApplicationController
   def create
-    # roleがguestは登録できなくする
-    # favoritesレコードにuser_idとrecipe_idが入るとお気に入りしたことになる
-    # ログインユーザーでfavoriteインスタンスに入れる
+    # gurestなら
+    if current_user.guest?
+      redirect_to result_path, notice: 'ログインしてください'
+    else 
+      # guest以外なら
+      favorite = current_user.favorites.build(recipe_id: params[:recipe_id])
+      favorite.save!
+      redirect_to result_path, notice: 'お気に入り登録しました'
+    end
 
-    # recipe.idはお気に入りぼたんのlink_toから渡す
-    # 
-
-    # binding.pry
-
-    favorite = current_user.favorites.build(recipe_id: params[:])
-    favorite.save!
-    redirect_to result_path, notice: 'お気に入り登録しました'
   end
 
   def destroy
-    favorite = current_user.favorites.find(params[:])
+    # binding.pry
+    favorite = current_user.favorites.find_by(recipe_id: params[:id])
     favorite.destroy!
     redirect_to result_path, notice: 'お気に入り解除しました'
   end

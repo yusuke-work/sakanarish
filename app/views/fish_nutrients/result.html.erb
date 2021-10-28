@@ -8,8 +8,11 @@
   <canvas id="myChart" width="400" height="200" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label="<%= @fish.name %>" > </canvas>
 
 <% @recipes.each do |recipe| %>
-  <%= link_to 'お気に入り', "#", class: 'button' %>
-  <%= link_to 'お気に入り解除', "#", class: 'button' %>
+  <%= link_to 'お気に入り', favorites_path(recipe_id: recipe), method: :post, class: 'button' %>
+  <!-- 以下の書き方は､表示されているレシピがfavoritesテーブルに存在していなかったらエラーになる?条件分岐で出したり出さなかったりする? -->
+  <%#= link_to 'お気に入り解除', favorite_path(current_user.favorites.find_by(recipe_id: recipe)), method: :delete, class: 'button' %>
+  <%= link_to 'お気に入り解除', favorite_path(recipe), method: :delete, class: 'button' %>
+
   <%= link_to recipe.url do %>
     <%= image_tag recipe.image_url %>
   <% end %>
