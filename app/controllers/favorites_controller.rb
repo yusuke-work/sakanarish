@@ -15,13 +15,8 @@ class FavoritesController < ApplicationController
 
   def destroy
     # binding.pry
-    # とりあえずお気に入り登録していないレシピはエラーにならないようにした
-    if current_user.favorites.find_by(recipe_id: params[:id])
       favorite = current_user.favorites.find_by(recipe_id: params[:id])
       favorite.destroy!
       redirect_to result_path, notice: 'お気に入り解除しました'
-    else
-      redirect_to result_path, alert: 'お気に入りしていません'
-    end
   end
 end

@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to login_path, alert: 'ログインしてください'
   end
+
+  # 未ログインまたはgestを弾く
+  def not_general_or_admin
+    redirect_to login_path, alert: 'ログインしてください'
+  end
 end

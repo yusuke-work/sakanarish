@@ -39,8 +39,9 @@ class User < ApplicationRecord
     create!(name: 'guest_user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value, role: 10)
   end
 
-  # ユーザーがお気に入り登録しているか確認する
+  # ユーザーがお気に入り登録しているか判断
   def favorite?(obj)
     recipes.include?(obj)
   end
+
 end
