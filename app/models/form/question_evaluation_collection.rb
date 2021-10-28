@@ -67,6 +67,7 @@ class Form::QuestionEvaluationCollection < Form::Base
   def save
     # DBに保存できるのはユーザーごとにワンセットのみ
     QuestionEvaluation.where(user_id: user.id).destroy_all if QuestionEvaluation.find_by(user_id: user.id).present?
+
     # 順番に登録する
     # 全ての属性にseveが成功しないとロールバックさせる
     QuestionEvaluation.transaction do
