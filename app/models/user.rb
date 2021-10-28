@@ -38,4 +38,9 @@ class User < ApplicationRecord
     # ゲストユーザー作成(roleでgestを判断する)
     create!(name: 'guest_user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value, role: 10)
   end
+
+  # ユーザーがお気に入り登録しているか確認する
+  def favorite?(obj)
+    recipes.include?(obj)
+  end
 end
