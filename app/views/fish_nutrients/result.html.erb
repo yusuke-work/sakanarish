@@ -2,11 +2,11 @@
   <h1>診断結果</h1>
   <h2>あなたのおすすめは..</h2>
     <%= @fish.name %>です!<br>
-
     <%= image_tag @fish.image_url %>
-
-    <canvas id="myChart" width="400" height="200" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label="<%= @fish.name %>" > </canvas>
-
+    <div class="chart-container">
+      <canvas id="myChart" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label=<%= @fish.name.split %> ></canvas>
+    </div>
+    
   <% @recipes.each do |recipe| %>
     <% if current_user.favorite?(recipe) %>
       <!-- 以下の書き方は､表示されているレシピがfavoritesテーブルに存在していなかったらエラーになる?条件分岐で出したり出さなかったりする? -->

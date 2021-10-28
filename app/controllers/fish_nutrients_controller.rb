@@ -44,7 +44,7 @@ class FishNutrientsController < ApplicationController
     # 7匹の魚栄養のレコードを取得
     # 最大の栄養カテゴリの魚栄養レコードを取得
     fishes7 = FishNutrient.where(fish_id: fish_7ids).where(nutrient_category_id: max_k_v[0]).order(nutritional_value: :desc)
-
+              # binding.pry
     # 最大の評価値によって一匹を取得(fish_id)sessionに保持させる
     session[:fish_id] = case max_k_v[1]
               when 2
@@ -76,8 +76,14 @@ class FishNutrientsController < ApplicationController
 
     #<レーダーチャート用 >
     # レーダーチャートの各栄養値
+    # 魚ごとの栄養10段階ランキングを作る
+    # 魚は増えないので自分で出すでも動的に魚と紐付けて出すようにしたい(calucuationアクションで無理やり入れるか)
     # binding.pry
-    @data_values = fish_select_nutrients.map(&:nutritional_value)
+    # @data_values = fish_select_nutrients.map(&:nutritional_value)
+    @nutrient_evaluation = case @fish.id
+
+
+    # ]
   
     # レーダーチャートのラベル
     @data_keys = [

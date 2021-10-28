@@ -2,36 +2,31 @@ import Chart from 'chart.js/auto';
 // viewでjsを書く時に必要
 // global.Chart = Chart;
 
+// viewから渡しているdata属性は配列でないとjsonをパースできません
+// jsにおけるJSON.parse() メソッドは文字列を JSON として解析して構築します｡
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'radar',
   data: {
     labels: JSON.parse(ctx.canvas.dataset.labels),
-    datasets: [
-      {
-      // label: JSON.parse(ctx.canvas.dataset.label),
-      backgroundColor: [
-              "#BB5179",
-              "#FAFF67",
-              "#58A27C",
-              "#3C00FF"
-          ],
-      // borderColor: "rgba(0,0,80,1)",
-      data: JSON.parse(ctx.canvas.dataset.data)
-      }
-    ]
+    datasets:
+      [
+        {
+          label: JSON.parse(ctx.canvas.dataset.label),
+          backgroundColor: 'rgba(102,255,129,0.2)',
+          borderColor: 'rgba(122,255,129,0.2)',
+          data: JSON.parse(ctx.canvas.dataset.data)
+        }
+      ]
   },
   options: {
-    title: {
-      display: true,
-      text: '血液型 割合'
-    },
-    scale: {
-      ticks: {
-        suggestedMin: 0,
-            suggestedMax: 100,
-        }
+    scales: {
+      r: {
+        // suggestedMin: 0,
+        // suggestedMax: 1
+        min: 0,
+        max: 5
+      }
     }
   }
 });
-
