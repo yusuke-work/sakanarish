@@ -1,6 +1,7 @@
 class FishNutrientsController < ApplicationController
-  def calculation
+  before_action :not_general_or_admin, only: %i[favorites]
 
+  def calculation
     # <カロリーの評価値で7匹の魚を取得する>
     # fish_nutrientsテーブルをカロリの含有量で並び替え
     # fish_nutrients = FishNutrient.all
@@ -95,5 +96,11 @@ class FishNutrientsController < ApplicationController
     # <レシピ用>
     @recipes = @fish.recipes
     # binding.pry
+  end
+
+  # お気に入りしたレシピ一覧
+  def favorites
+    # binding.pry
+    @favorite_recipes = current_user.recipes
   end
 end

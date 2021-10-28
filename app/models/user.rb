@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :question_evaluations, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  # お気に入りしたレシピを取得
+  has_many :recipes, through: :favorites
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -36,4 +38,10 @@ class User < ApplicationRecord
     # ゲストユーザー作成(roleでgestを判断する)
     create!(name: 'guest_user', email: "#{random_value}@.com", password: random_value, password_confirmation: random_value, role: 10)
   end
+
+  # ユーザーがお気に入り登録しているか判断
+  def favorite?(obj)
+    recipes.include?(obj)
+  end
+
 end
