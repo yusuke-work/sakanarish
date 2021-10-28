@@ -44,9 +44,6 @@ class RecipesController < ApplicationController
       "11-78-327"
     ]
 
-    # APIのGETリクエスト先を指定
-    # url = 'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?'
-
     # JSONのリクエストボディのみ配列で取り出す
     response_bodys = category_ids.map do |category_id|
                       sleep(1.5)
@@ -60,7 +57,7 @@ class RecipesController < ApplicationController
                         # アプリid
                         applicationId: ENV['APPLICATION_ID']
                       }
-                      url = 'https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?'
+
                       # getリクエストでJSON取得(叩く)
                       response = http_client.get(ENV['URL'], query)
                       # JSONのリクエストボディのみ取り出す
@@ -71,7 +68,7 @@ class RecipesController < ApplicationController
     responses = response_bodys.map do |response_body|
       JSON.parse(response_body)
     end
-# binding.pry
+
     # 必要なデータのみ配列のまま成形
     responses = responses.map do |response|
       results = response["result"]
@@ -128,6 +125,7 @@ class RecipesController < ApplicationController
             updated_at: Time.current
           }
         ]
+        
         Recipe.insert_all(recipes)
     end
   end
