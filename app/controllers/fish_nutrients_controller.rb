@@ -72,7 +72,8 @@ class FishNutrientsController < ApplicationController
     
     # 対象の魚一匹
     @fish = fish_select_nutrients.first
-    binding.pry
+    # binding.pry
+    @fish_nutrients = fish_select_nutrients.map(&:nutritional_value)
 
     #<レーダーチャート用 >
     # 各栄養の評価値

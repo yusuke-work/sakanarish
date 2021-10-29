@@ -12,7 +12,7 @@ var myChart = new Chart(ctx, {
     datasets:
       [
         {
-          label: JSON.parse(ctx.canvas.dataset.label),
+          label: JSON.parse(ctx.canvas.dataset.label) + "の評価点",
           backgroundColor: 'rgba(102,255,129,0.2)',
           borderColor: 'rgba(122,255,129,0.2)',
           data: JSON.parse(ctx.canvas.dataset.data)

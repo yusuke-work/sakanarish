@@ -1,11 +1,47 @@
 <div class="container">
   <h1>診断結果</h1>
   <h2>あなたのおすすめは..</h2>
-    <%= @fish.name %>です!<br>
-    <%= image_tag @fish.image_url %>
-    <div class="chart-container">
-      <canvas id="myChart" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label=<%= @fish.name.split %> ></canvas>
-    </div>
+  <%= @fish.name %>です!<br>
+  <%= image_tag @fish.image_url %>
+
+  <div class="chart-container">
+    <canvas id="myChart" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label=<%= @fish.name.split %> ></canvas>
+  </div>
+
+
+
+  <table border=”1″>可食部100gあたりの主な食品成分
+    <tr>
+      <th>カロリー</th>
+      <th>タンパク質</th>
+      <th>脂質</th>
+      <th>炭水化物</th>
+      <th>カルシウム</th>
+      <th>亜鉛</th>
+    </tr>
+    <tr>
+      <td><%= @fish_nutrients[0] %>kcal</td>
+      <td><%= @fish_nutrients[1] %>g</td>
+      <td><%= @fish_nutrients[2] %>g</td>
+      <td><%= @fish_nutrients[3] %>g</td>
+      <td><%= @fish_nutrients[4] %>mg</td>
+      <td><%= @fish_nutrients[5] %>mg</td>
+    </tr>
+    <tr>
+      <th>ビタミンA</th>
+      <th>ビタミンD</th>
+      <th>ビタミンE</th>
+      <th>ビタミンB12</th>
+      <th>EPA・DHA</th>
+    </tr>
+    <tr>
+      <td><%= @fish_nutrients[6] %>μg</td>
+      <td><%= @fish_nutrients[7] %>μg</td>
+      <td><%= @fish_nutrients[8] %>mg</td>
+      <td><%= @fish_nutrients[9] %>μg</td>
+      <td><%= @fish_nutrients[10] %>mg</td>
+    </tr>
+  </table>
     
   <% @recipes.each do |recipe| %>
     <% if current_user.favorite?(recipe) %>
