@@ -67,25 +67,18 @@ class FishNutrientsController < ApplicationController
   end
 
   def result
-    # 対象の魚の栄養(nutrient_category_idをキーにして各栄養をハッシュにする)
-    # fish_select_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.nutritional_value").where(id: fish_id)
-    fish_select_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.nutritional_value").where(id: session[:fish_id] )
-
+    # 対象の魚の栄養と評価値の集合
+    fish_select_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.nutritional_value, fish_nutrients.evaluation").where(id: session[:fish_id] )
+    
     # 対象の魚一匹
     @fish = fish_select_nutrients.first
+    binding.pry
 
     #<レーダーチャート用 >
-    # レーダーチャートの各栄養値
-    # 魚ごとの栄養10段階ランキングを作る
-    # 魚は増えないので自分で出すでも動的に魚と紐付けて出すようにしたい(calucuationアクションで無理やり入れるか)
-    # binding.pry
-    # @data_values = fish_select_nutrients.map(&:nutritional_value)
-    @nutrient_evaluation = case @fish.id
+    # 各栄養の評価値
+    @data_values = fish_select_nutrients.map(&:evaluation)
 
-
-    # ]
-  
-    # レーダーチャートのラベル
+    # ラベル
     @data_keys = [
       'カロリー',
       'タンパク質',
