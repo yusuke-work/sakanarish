@@ -33,10 +33,14 @@ class FishNutrientsController < ApplicationController
     # カロリーだけ削除
     nutrient_category_evaluation.delete(1)
     # 評価値の最大値を取得する(複数可)
+    # binding.pry
     max_v = nutrient_category_evaluation.values.max
     
     # キーとバリューの組み合わせを取得(最大値は複数ある可能性があるため)
     max_k_v = nutrient_category_evaluation.select{ |k, v| v == max_v }
+
+    # result画面に渡すため
+    session[:max_nutrient_category] = max_k_v
 
     # 同じ値がある場合はランダムで一つ取得(nutrient_category_idとevaluationの組み合わせになる)
     max_k_v_rum = max_k_v.to_a.sample
@@ -47,7 +51,7 @@ class FishNutrientsController < ApplicationController
     fishes7 = FishNutrient.where(fish_id: fish_7ids).where(nutrient_category_id: max_k_v_rum[0]).order(nutritional_value: :desc)
 
     # 最大の評価値によって一匹を取得
-    fish_id = case max_k_v_rum[1]
+    session[:fish_id] = case max_k_v_rum[1]
               when 2
                 fishes7[6].fish_id
               when 3
@@ -64,25 +68,21 @@ class FishNutrientsController < ApplicationController
                 fishes7[0].fish_id
               end
               # binding.pry
-    # ish_idと最大の栄養カテゴリを渡す
-    redirect_to result_path(fish_id: fish_id, max_nutrient_category: max_k_v.keys)
+    # ish_idと最大の栄養カテゴリ(hash)を渡す
+    # redirect_to result_path(fish_id: fish_id, max_nutrient_category: max_k_v)
+    redirect_to result_path
   end
 
   def result
-    binding.pry
-    # メッセージ
-    # ユーザーの応えたquestion_evaluationによってメッセージを変える?
-    # 評価値が最大のcategoryによってメッセージを変える?
-    # viewでif文でテンプレートで分割出力する
-    @message =  session[:max_nutrient_category]
-
-
-
     # <診断結果の魚と名前>
     # 対象の魚の栄養と評価値の集合
-    fish_select_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.nutritional_value, fish_nutrients.evaluation").where(id: params[:fish_id] )
+    fish_select_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.nutritional_value, fish_nutrients.evaluation").where(id: session[:fish_id] )
     # 対象の魚一匹
     @fish = fish_select_nutrients.first
+
+    # <メッセージ>
+    # binding.pry
+    @max_nutrient_categories = session[:max_nutrient_category]
 
     # <栄養表>
     @fish_nutrients = fish_select_nutrients.map(&:nutritional_value)
@@ -106,8 +106,8 @@ class FishNutrientsController < ApplicationController
       'EPA・DHA'
     ]
     # <レシピ用>
-    @recipes = @fish.recipes
     # binding.pry
+    @recipes = @fish.recipes
   end
 
   # お気に入りしたレシピ一覧
