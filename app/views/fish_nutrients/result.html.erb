@@ -4,12 +4,23 @@
   <%= @fish.name %>です!<br>
   <%= image_tag @fish.image_url %>
 
-  <div class="chart-container">
-    <canvas id="myChart" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label=<%= @fish.name.split %> ></canvas>
+
+  <!-- メッセージ -->
+  <div style="background: #ffb6c1; border: 1px solid #ffb6c1; padding-left: 20px;">
+    <span style="color: white;">＊タイトル</span>
+  </div>
+  <div style="border: 1px solid #ffb6c1; font-size: 100%; padding: 20px;">
+  ここに本文を入れます♪
   </div>
 
 
 
+  <!-- レーダーチャート -->
+  <div class="chart-container">
+    <canvas id="myChart" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label=<%= @fish.name.split %> ></canvas>
+  </div>
+
+  <!-- 栄養表 -->
   <table border=”1″>可食部100gあたりの主な食品成分
     <tr>
       <th>カロリー</th>
@@ -42,7 +53,8 @@
       <td><%= @fish_nutrients[10] %>mg</td>
     </tr>
   </table>
-    
+
+  <!-- レシピ一覧 -->
   <% @recipes.each do |recipe| %>
     <% if current_user.favorite?(recipe) %>
       <!-- 以下の書き方は､表示されているレシピがfavoritesテーブルに存在していなかったらエラーになる?条件分岐で出したり出さなかったりする? -->
@@ -61,5 +73,6 @@
     <%= recipe.indication %>
   <% end %>
 </div>
+
 <%= link_to 'トップへ戻る', root_path%>
 <%= javascript_pack_tag 'chart' %>

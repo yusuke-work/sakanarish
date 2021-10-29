@@ -34,19 +34,20 @@ class FishNutrientsController < ApplicationController
     nutrient_category_evaluation.delete(1)
     # 評価値の最大値を取得する(複数可)
     max_v = nutrient_category_evaluation.values.max
+    
     # キーとバリューの組み合わせを取得(最大値は複数ある可能性があるため)
     max_k_v = nutrient_category_evaluation.select{ |k, v| v == max_v }
-    # 同じ値がある場合はランダムで一つ取得(nutrient_category_idとevaluationの組み合わせになる)
 
-    max_k_v = max_k_v.to_a.sample
+    # 同じ値がある場合はランダムで一つ取得(nutrient_category_idとevaluationの組み合わせになる)
+    max_k_v_rum = max_k_v.to_a.sample
 
     # <取得した最大値の値と栄養カテゴリによって7匹の中から一匹のfish_idを出す>
     # 7匹の魚栄養のレコードを取得
     # 最大の栄養カテゴリの魚栄養レコードを取得
-    fishes7 = FishNutrient.where(fish_id: fish_7ids).where(nutrient_category_id: max_k_v[0]).order(nutritional_value: :desc)
-              # binding.pry
-    # 最大の評価値によって一匹を取得(fish_id)sessionに保持させる
-    session[:fish_id] = case max_k_v[1]
+    fishes7 = FishNutrient.where(fish_id: fish_7ids).where(nutrient_category_id: max_k_v_rum[0]).order(nutritional_value: :desc)
+
+    # 最大の評価値によって一匹を取得
+    fish_id = case max_k_v_rum[1]
               when 2
                 fishes7[6].fish_id
               when 3
@@ -62,17 +63,28 @@ class FishNutrientsController < ApplicationController
               else 
                 fishes7[0].fish_id
               end
-              
-    redirect_to result_path
+              # binding.pry
+    # ish_idと最大の栄養カテゴリを渡す
+    redirect_to result_path(fish_id: fish_id, max_nutrient_category: max_k_v.keys)
   end
 
   def result
+    binding.pry
+    # メッセージ
+    # ユーザーの応えたquestion_evaluationによってメッセージを変える?
+    # 評価値が最大のcategoryによってメッセージを変える?
+    # viewでif文でテンプレートで分割出力する
+    @message =  session[:max_nutrient_category]
+
+
+
+    # <診断結果の魚と名前>
     # 対象の魚の栄養と評価値の集合
-    fish_select_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.nutritional_value, fish_nutrients.evaluation").where(id: session[:fish_id] )
-    
+    fish_select_nutrients = Fish.joins(:fish_nutrients).select("fish.*, fish_nutrients.nutritional_value, fish_nutrients.evaluation").where(id: params[:fish_id] )
     # 対象の魚一匹
     @fish = fish_select_nutrients.first
-    # binding.pry
+
+    # <栄養表>
     @fish_nutrients = fish_select_nutrients.map(&:nutritional_value)
 
     #<レーダーチャート用 >
