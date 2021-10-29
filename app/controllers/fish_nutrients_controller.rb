@@ -1,5 +1,5 @@
 class FishNutrientsController < ApplicationController
-  before_action :not_general_or_admin, only: %i[favorites]
+  before_action :check_general, only: %i[favorites]
 
   def calculation
     # <カロリーの評価値で7匹の魚を取得する>
