@@ -101,9 +101,8 @@
   <!-- レシピ一覧 -->
   <% @recipes.each do |recipe| %>
     <% if current_user.favorite?(recipe) %>
-      <!-- 以下の書き方は､表示されているレシピがfavoritesテーブルに存在していなかったらエラーになる?条件分岐で出したり出さなかったりする? -->
-      <%#= link_to 'お気に入り解除', favorite_path(current_user.favorites.find_by(recipe_id: recipe)), method: :delete, class: 'button' %>
-      <%= link_to 'お気に入り解除', favorite_path(recipe), method: :delete, class: 'button' %>
+      <%# N+1対策 そのrecipeのrecipesからcurrnet_userのレシピを取得(recipe起点) %>
+      <%= link_to 'お気に入り解除', favorite_path(recipe.favorites.find { |r| r.user_id == current_user.id }), method: :delete, class: 'button' %>
     <% else %>
       <%= link_to 'お気に入り', favorites_path(recipe_id: recipe), method: :post, class: 'button' %>
     <% end %>
