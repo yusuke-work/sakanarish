@@ -6,7 +6,7 @@ class Form::QuestionEvaluationCollection < Form::Base
 
   # 初期化
   def initialize(attributes = {})
-    # スーパークラスのinitializeメソッドを呼び出す?
+    # スーパークラスActiveModel::Attributesのinitializeメソッドを呼び出す?
     super attributes
     # question_evaluationsという変数に一つの配列を入れている｡
     # 各要素は空の13個のレコード

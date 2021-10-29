@@ -6,5 +6,6 @@ csv.each do |fish_nutrient|
     s.fish_id = fish_nutrient[1]
     s.nutrient_category_id = fish_nutrient[2]
     s.nutritional_value = fish_nutrient[3]
+    s.evaluation = fish_nutrient[4]
   end
 end

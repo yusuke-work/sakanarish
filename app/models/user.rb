@@ -40,8 +40,17 @@ class User < ApplicationRecord
   end
 
   # ユーザーがお気に入り登録しているか判断
-  def favorite?(obj)
-    recipes.include?(obj)
+  def favorite?(recipe)
+    # N+1対策 コントローラから渡されたrecipeを起点に検索をかける
+    recipe.favorites.pluck(:user_id).include?(self.id)
   end
 
+  # お気に入り登録
+  def favorite(recipe)
+    self.recipes << recipe
+  end
+
+  def unfavorite(recipe)
+    self.recipes.destroy(recipe)
+  end
 end

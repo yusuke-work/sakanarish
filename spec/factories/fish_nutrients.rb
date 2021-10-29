@@ -3,6 +3,7 @@
 # Table name: fish_nutrients
 #
 #  id                   :bigint           not null, primary key
+#  evaluation           :integer          not null
 #  nutritional_value    :float(24)        not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
