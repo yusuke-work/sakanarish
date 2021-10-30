@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: 'static_pages#top'
+  get 'privacy', to: 'static_pages#privacy'
+  get 'terms', to: 'static_pages#terms'
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
@@ -13,10 +15,10 @@ Rails.application.routes.draw do
 
   # apiのディレクトで叩くようにしたらコントローラはいらないかも
   get 'recipe', to: 'recipes#recipe'
+
   
   resource :my_pages, only: %i[show]
   resources :favorites, only: %i[create destroy] 
   resources :users, only: %i[new create]
   resources :question_evaluations, only: %i[new create]
-
 end

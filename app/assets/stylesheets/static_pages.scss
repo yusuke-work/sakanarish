@@ -12,6 +12,10 @@ img {
 }
 
 /* HEADER */
+header {
+  background-color: rgb(0, 0, 0);
+  padding: 0 4%;
+}
 .logo {
   width: 100px;
   margin-top: 10px;
@@ -23,6 +27,7 @@ img {
   text-transform: uppercase;
   margin-top: 34px;
   list-style: none;
+  color: rgb(255, 255, 255);
 }
 .main-nav li {
   margin-left: 36px;
@@ -48,7 +53,7 @@ img {
 /* HOME */
 .home-content {
   text-align: center;
-  margin-top: 10%;
+  margin-top: 0;
 }
 .home-content p {
   font-size: 1.125rem;
@@ -62,6 +67,7 @@ img {
   text-transform: uppercase;
   font-weight: normal;
   color: rgb(255, 255, 255);
+  margin-top: 0;
 }
 
 /* ボタン */
@@ -70,7 +76,7 @@ img {
   background: #0bd;
   color: #fff;
   border-radius: 5px;
-  padding: 18px 18px;
+  padding: 14px 14px;
 }
 .button:hover {
   background: #0090aa;
@@ -96,10 +102,10 @@ img {
 footer {
   background: rgb(0, 0, 0);
   text-align: center;
-  padding: 10px 0;
+  padding: 5px 0;
 }
 footer p {
   color: #fff;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 

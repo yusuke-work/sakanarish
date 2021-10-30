@@ -1,16 +1,19 @@
 <h1>お気に入りしたレシピ一覧</h1>
 <% @favorite_recipes.each do |favorite_recipe| %>
-  <%= link_to 'お気に入り', favorites_path(recipe_id: favorite_recipe), method: :post, class: 'button' %>
-  <!-- 以下の書き方は､表示されているレシピがfavoritesテーブルに存在していなかったらエラーになる?条件分岐で出したり出さなかったりする? -->
-  <%#= link_to 'お気に入り解除', favorite_path(current_user.favorites.find_by(recipe_id: recipe)), method: :delete, class: 'button' %>
-  <%= link_to 'お気に入り解除', favorite_path(favorite_recipe), method: :delete, class: 'button' %>
+    <% if current_user.favorite?(favorite_recipe) %>
+      <%# N+1対策 そのrecipeのrecipesからcurrnet_userのレシピを取得(recipe起点) %>
+      <%= link_to 'お気に入り解除', favorite_path(favorite_recipe.favorites.find { |r| r.user_id == current_user.id }), method: :delete, class: 'button' %>
+    <% else %>
+      <%= link_to 'お気に入り', favorites_path(recipe_id: favorite_recipe), method: :post, class: 'button' %>
+    <% end %>
 
-  <%= link_to favorite_recipe.url do %>
-    <%= image_tag favorite_recipe.image_url %>
-  <% end %>
+    <%= link_to favorite_recipe.url do %>
+      <%= image_tag favorite_recipe.image_url %>
+    <% end %>
 
-  <%= favorite_recipe.title %>
-  <%= favorite_recipe.material %>
-  <%= favorite_recipe.indication %>
+    <%= favorite_recipe.title %>
+    <%= favorite_recipe.material %>
+    <%= favorite_recipe.indication %>
 <% end %>
+
 <%= link_to 'トップへ戻る', root_path%>
