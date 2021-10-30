@@ -4,4 +4,12 @@ class StaticPagesController < ApplicationController
   def top
     # binding.pry
   end
+
+  def privacy
+
+  end
+
+  def terms
+    
+  end
 end
