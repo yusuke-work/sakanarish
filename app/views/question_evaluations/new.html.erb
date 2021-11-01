@@ -1,16 +1,25 @@
 <%= form_with model: @form, url: question_evaluations_path, method: :post, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+  <h1>診断ページ</h1>
+
+    <% @questions.each do |question| %>
+      <%= question.text %>
+    <% end %>
+
   <%= f.fields_for :question_evaluations do |i| %>
-    <%= i.radio_button :evaluation, 5 %>
-    <%= i.label :evaluation_5, "とてもあてはまる", {style: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 4 %>
-    <%= i.label :evaluation_4, "すこしあてはまる", {tyle: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 3, checked: true %>
-    <%= i.label :evaluation_3, "どちらでもない", {style: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 2 %>
-    <%= i.label :evaluation_2, "あまりあてはまらない", {style: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 1 %>
-    <%= i.label :evaluation_1, "まったくあてはまらない", {style: "display: inline-block;"} %>
+    <div>
+    <br>
+      <%= i.radio_button :evaluation, 5 %>
+      <%= i.label :evaluation_5, "とてもあてはまる" %>
+      <%= i.radio_button :evaluation, 4 %>
+      <%= i.label :evaluation_4, "すこしあてはまる" %>
+      <%= i.radio_button :evaluation, 3, checked: true %>
+      <%= i.label :evaluation_3, "どちらでもない" %>
+      <%= i.radio_button :evaluation, 2 %>
+      <%= i.label :evaluation_2, "あまりあてはまらない" %>
+      <%= i.radio_button :evaluation, 1 %>
+      <%= i.label :evaluation_1, "まったくあてはまらない" %>
+    </div>
   <% end %>
   <%= f.submit  %>
 <% end %>

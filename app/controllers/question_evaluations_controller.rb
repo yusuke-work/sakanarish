@@ -2,10 +2,12 @@ class QuestionEvaluationsController < ApplicationController
   def new
     # 一括保存のコレクションモデルのインスタンスを作成(initializeメソッドが動く)
     @form = Form::QuestionEvaluationCollection.new
+    @questions = Question.all
   end
   
   def create
     # user_attributesはコレクションモデルの属性｡ログインuser情報をセット
+    # binding.pry
     @form = Form::QuestionEvaluationCollection.new({ user_attributes: current_user }.merge(question_evaluation_params))
 
     if @form.save
