@@ -3,7 +3,6 @@ class QuestionEvaluationsController < ApplicationController
     # 一括保存のコレクションモデルのインスタンスを作成(initializeメソッドが動く)
     @form = Form::QuestionEvaluationCollection.new
     @questions = Question.all
-    
   end
   
   def create
