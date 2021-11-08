@@ -2,13 +2,10 @@
   <%= render 'shared/error_messages', object: f.object %>
   <h1>診断ページ</h1>
 
-    <% @questions.each do |question| %>
-      <%= question.text %>
-    <% end %>
-
   <%= f.fields_for :question_evaluations do |i| %>
     <div>
-    <br>
+      <%= @questions[i.index].text %>
+      <br>
       <%= i.radio_button :evaluation, 5 %>
       <%= i.label :evaluation_5, "とてもあてはまる" %>
       <%= i.radio_button :evaluation, 4 %>
