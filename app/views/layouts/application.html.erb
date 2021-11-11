@@ -14,17 +14,6 @@
   </head>
 
   <body>
-    <%= javascript_pack_tag 'hello_vue' %>
-    <%= stylesheet_pack_tag 'hello_vue'  %>
-    <%= javascript_pack_tag 'custom_vue' %>
-
-    <div id='hello'>
-      <p>{{ message }}</p>
-    </div>
-    <div id='hello2'>
-      <p>{{ message }}</p>
-    </div>
-
     <% if !logged_in?||current_user.guest? %>
       <%= render 'shared/before_login_header' %>
     <% else %>
