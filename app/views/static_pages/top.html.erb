@@ -3,11 +3,12 @@
        <h2 class="page-title">簡単な診断で<br>あなたにぴったりの<br>おさかなとレシピを提案します<h2>
     </div>
 </div>
+
 <div>
   <% if !logged_in?||current_user.guest? %>
-    <%= link_to '診断する(ゲストログインする)', guest_login_path, method: :post, class: 'btn btn-primary' %>
+    <%= link_to '診断する(ゲストログインする)', guest_login_path, method: :post, class: 'btn btn-info' %>
   <% else %>
-    <%= link_to '診断する(ゲストログインしない)', new_question_evaluation_path, class: 'btn btn-primary' %>
+    <%= link_to '診断する(ゲストログインしない)', new_question_evaluation_path, class: 'btn btn-info' %>
   <% end %>
 </div>
 
