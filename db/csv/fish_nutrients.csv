@@ -1,4 +1,4 @@
-﻿id,fish_id,nutrient_category_id,nutritional_value,virtual_evaluation
+﻿id,fish_id,nutrient_category_id,nutritional_value,evaluation
 1,1,1,86,1
 2,1,2,16.8,2
 3,1,3,2.3,2
