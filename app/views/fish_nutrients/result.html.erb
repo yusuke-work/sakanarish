@@ -3,9 +3,12 @@
     <div class="col-lg-8 offset-lg-2">
       <h1>診断結果</h1>
       <h2>あなたのおすすめは..</h2>
-      <%= @fish.name %>です!<br>
-      <%= image_tag @fish.image_url %>
-
+       <br>
+      <h2 class="text-center"><%= @fish.name %>です!</h2>
+      <div>
+      <%= image_tag @fish.image_url, size: 600 %>
+      </div>
+  
       <!-- メッセージ -->
       <div style="background: #ffb6c1; border: 1px solid #ffb6c1; padding-left: 20px;">
         <span style="color: white;">強いて言うなら､､</span>
@@ -102,14 +105,16 @@
         </tr>
       </table>
       <br>
+      
       <!-- レシピ一覧 -->
-
       <% @recipes.each do |recipe| %>
         <h2><%= recipe.title %></h2>
-        <div class="card" >
-          <%= link_to recipe.url do %>
-            <%= image_tag recipe.image_url %>
-          <% end %>
+        <div class="card">
+          <div class="text-center">
+            <%= link_to recipe.url do %>
+              <%= image_tag recipe.image_url, size: "615x500", class: "text-center" %>
+            <% end %>
+            </div>
           <div class="card-body">
             <h5 class="card-title">材料</h5>
             <p class="card-text"><%= recipe.material %></p>

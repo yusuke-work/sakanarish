@@ -1,6 +1,6 @@
 <div class="container pt-5">
   <div class="row mb-3">
-    <div class="col-lg-10 offset-lg-2">
+    <div class="text-center">
       <%= form_with model: @form, url: question_evaluations_path, method: :post, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <h1>診断ページ</h1>
@@ -23,7 +23,7 @@
           </div>
           <br>
         <% end %>
-        <%= f.submit "診断結果へ♪", class: 'btn btn-info' %>
+          <%= f.submit "診断結果へ♪", class: 'btn btn-info btn-lg' %>
       <% end %>
       <br>
     </div>

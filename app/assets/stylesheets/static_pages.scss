@@ -6,9 +6,12 @@
 //   /* aタグの傍線の指定 */
 //   text-decoration: none;
 // }
-img {
-  /* 画像の大きさ指定 100%とすることで親要素よりも大きくなることを防ぎます*/
-  max-width: 100%;
+.image {
+  // position: absolute;
+  border-radius: 50%;
+  border: 3px solid #999;
+  // width: 120px;
+  // height: 120px;
 }
 
 /* HEADER */
