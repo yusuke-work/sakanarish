@@ -1,19 +1,35 @@
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="col-lg-8 offset-lg-2">
+
 <h1>お気に入りしたレシピ一覧</h1>
-<% @favorite_recipes.each do |favorite_recipe| %>
-    <% if current_user.favorite?(favorite_recipe) %>
-      <%# N+1対策 そのrecipeのrecipesからcurrnet_userのレシピを取得(recipe起点) %>
-      <%= link_to 'お気に入り解除', favorite_path(favorite_recipe.favorites.find { |r| r.user_id == current_user.id }), method: :delete, class: 'button' %>
-    <% else %>
-      <%= link_to 'お気に入り', favorites_path(recipe_id: favorite_recipe), method: :post, class: 'button' %>
-    <% end %>
+      <!-- レシピ一覧 -->
+      <% @favorite_recipes.each do |recipe| %>
+        <h2><%= recipe.title %></h2>
+        <div class="card">
+          <div class="text-center">
+            <%= link_to recipe.url do %>
+              <%= image_tag recipe.image_url, size: "615x500", class: "text-center" %>
+            <% end %>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title">材料</h5>
+            <p class="card-text"><%= recipe.material %></p>
+            <h5 class="card-title">調理時間</h5>
+            <p class="card-text"><%= recipe.indication %></p>
 
-    <%= link_to favorite_recipe.url do %>
-      <%= image_tag favorite_recipe.image_url %>
-    <% end %>
+            <% if current_user.favorite?(recipe) %>
+              <%# N+1対策 そのrecipeのrecipesからcurrnet_userのレシピを取得(recipe起点) %>
+              <%= link_to 'お気に入り解除', favorite_path(recipe.favorites.find { |r| r.user_id == current_user.id }), method: :delete, class: 'btn btn-warning' %>
+            <% else %>
+              <%= link_to 'お気に入り', favorites_path(recipe_id: recipe), method: :post, class: 'btn btn-warning' %>
+            <% end %>
+          </div>
+        </div>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-    <%= favorite_recipe.title %>
-    <%= favorite_recipe.material %>
-    <%= favorite_recipe.indication %>
-<% end %>
-
-<%= link_to 'トップへ戻る', root_path%>
+<%= link_to 'トップへ戻る', root_path, class: 'btn btn-secondary' %>

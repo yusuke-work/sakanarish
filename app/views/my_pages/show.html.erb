@@ -1,5 +1,14 @@
-<h1>マイページ</h1>
-<div>
-ユーザー名: <%= @user.name %>
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="col-lg-8 offset-lg-2">
+      <h1>マイページ</h1>
+      <div>
+        ユーザー名: <%= @user.name %>
+      </div>
+
+      <%= link_to 'お気に入りしたレシピ', recipe_favorites_path, class: 'btn btn-info' %>
+      <br>
+      <%= link_to 'トップへ戻る', root_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
 </div>
-<%= link_to 'お気に入りしたレシピ', recipe_favorites_path %>

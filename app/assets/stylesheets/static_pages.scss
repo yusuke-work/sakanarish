@@ -2,65 +2,83 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-a {
-  /* aタグの傍線の指定 */
-  text-decoration: none;
-}
-img {
-  /* 画像の大きさ指定 100%とすることで親要素よりも大きくなることを防ぎます*/
-  max-width: 100%;
+// a {
+//   /* aタグの傍線の指定 */
+//   text-decoration: none;
+// }
+.image {
+  // position: absolute;
+  border-radius: 50%;
+  border: 3px solid #999;
+  // width: 120px;
+  // height: 120px;
 }
 
 /* HEADER */
-header {
-  background-color: rgb(0, 0, 0);
-  padding: 0 4%;
+.jumbotron-extend {
+  position: relative;
+  height: 100vh;
+  min-height: 300px;
+    background-image: url("top.jpg");
+  min-height: 100vh;
+    background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
+.jumbotron-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+// header {
+//   background-color: rgb(0, 0, 0);
+//   padding: 0 4%;
+// }
 .logo {
   width: 100px;
-  margin-top: 10px;
+  // margin-top: 10px;
 }
 
-.main-nav {
-  display: flex;
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  margin-top: 34px;
-  list-style: none;
-  color: rgb(255, 255, 255);
-}
-.main-nav li {
-  margin-left: 36px;
-}
-.main-nav a {
-  color: rgb(255, 255, 255);
-}
-.main-nav a:hover {
-  color: #0bd;
-}
-.page-header {
-  /* 横並びの指定 */
-  display: flex;
-  /* 両端の設置の指定 */
-  justify-content: space-between;
-}
-.wrapper {
-  max-width:  1100px;
-  margin: 0 auto;
-  padding: 0 4%;
-}
+// .main-nav {
+//   display: flex;
+//   font-size: 1.25rem;
+//   text-transform: uppercase;
+//   margin-top: 34px;
+//   list-style: none;
+//   color: rgb(255, 255, 255);
+// }
+// .main-nav li {
+//   margin-left: 36px;
+// }
+// .main-nav a {
+//   color: rgb(255, 255, 255);
+// }
+// .main-nav a:hover {
+//   color: #0bd;
+// }
+// .page-header {
+//   /* 横並びの指定 */
+//   display: flex;
+//   /* 両端の設置の指定 */
+//   justify-content: space-between;
+// }
+// .wrapper {
+//   max-width:  1100px;
+//   margin: 0 auto;
+//   padding: 0 4%;
+// }
 
-/* HOME */
-.home-content {
-  text-align: center;
-  margin-top: 0;
-}
-.home-content p {
-  font-size: 1.125rem;
-  margin: 10px 0 42px;
-}
+// /* HOME */
+// .home-content {
+//   text-align: center;
+//   margin-top: 0;
+// }
+// .home-content p {
+//   font-size: 1.125rem;
+//   margin: 10px 0 42px;
+// }
 
-/* 見出し */
+// /* 見出し */
 .page-title {
   font-size: 5rem;
   font-family: 'Philosopher', serif;
@@ -68,44 +86,41 @@ header {
   font-weight: normal;
   color: rgb(255, 255, 255);
   margin-top: 0;
+    max-width:  1100px;
+  margin: 0 auto;
+  padding: 0 4%;
 }
 
-/* ボタン */
-.button {
-  font-size: 1.375rem;
-  background: #0bd;
-  color: #fff;
-  border-radius: 5px;
-  padding: 14px 14px;
-}
-.button:hover {
-  background: #0090aa;
-}
+// /* ボタン */
+// .button {
+//   font-size: 1.375rem;
+//   background: #0bd;
+//   color: #fff;
+//   border-radius: 5px;
+//   padding: 14px 14px;
+// }
+// .button:hover {
+//   background: #0090aa;
+// }
 
-/* 大きな背景画像 */
-.big-bg {
-  /* 画像の縦横の比率を保ったまま画面いっぱいに広げたい場合 */
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-}
 
-#home {
-  background-image: url("top.jpg");
-  min-height: 100vh;
-}
-#home .page-title {
-  text-transform: none;
-}
 
-/* フッター */
-footer {
-  background: rgb(0, 0, 0);
-  text-align: center;
-  padding: 5px 0;
-}
-footer p {
-  color: #fff;
-  font-size: 0.9rem;
-}
+// #home {
+//   background-image: url("top.jpg");
+//   min-height: 100vh;
+// }
+// #home .page-title {
+//   text-transform: none;
+// }
+
+// /* フッター */
+// footer {
+//   background: rgb(0, 0, 0);
+//   text-align: center;
+//   padding: 5px 0;
+// }
+// footer p {
+//   color: #fff;
+//   font-size: 0.9rem;
+// }
 

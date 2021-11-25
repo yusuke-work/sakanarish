@@ -71,7 +71,7 @@ class Form::QuestionEvaluationCollection < Form::Base
     # 順番に登録する
     # 全ての属性にseveが成功しないとロールバックさせる
     QuestionEvaluation.transaction do
-      self.question_evaluations.map(&:save!)
+      self.question_evaluations.map(&:save)
     end
       return true
     rescue => e

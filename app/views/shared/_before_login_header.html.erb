@@ -1,15 +1,23 @@
-<header class="page-header">
-  <%= link_to root_path, class: 'logo' do %>
-    <%= image_tag 'logo.jpg' %>
-  <% end %>
-  <%# <h1><a href="index.html"><img src="logo.jpg" class="logo" alt="WCBカフェホーム"></a></h1>%>
-  <nav>
-    <ul class="main-nav">
-      <% if logged_in? %>
-        <li><%= current_user.name %></li>
+<header>
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">  <div class="container-fluid">
+    <div class="navbar-brand">
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.jpg', class: 'image', width: 120, height: 120 %>
       <% end %>
-      <li><%= link_to '新規登録', new_user_path %></li>
-      <li><%= link_to 'ログイン', login_path %></li>
-    </ul>
-  </nav>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to '新規登録', new_user_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'ログイン', login_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>

@@ -14,11 +14,12 @@
   </head>
 
   <body>
-  <% if !logged_in?||current_user.guest? %>
-    <%= render 'shared/before_login_header' %>
-  <% else %>
-    <%= render 'shared/header' %>
-  <% end %>
+    <% if !logged_in?||current_user.guest? %>
+      <%= render 'shared/before_login_header' %>
+    <% else %>
+      <%= render 'shared/header' %>
+    <% end %>
+
     <%= render 'shared/flash_message' %>
     <%= yield %>
     <%= render 'shared/footer' %>

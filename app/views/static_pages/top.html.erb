@@ -1,13 +1,54 @@
-<div id="home" class="big-bg">  
-  <div class="home-content wrapper">
-    <h2 class="page-title">簡単な診断であなたにぴったりのおさかなとレシピを提案します<h2>
-    <%# <p>おしゃれなカフェで癒やされてみませんか?無添加の食材で体の中からリフレッシュ｡</p> %>
-  </div><!-- /.home-content -->
-</div><!-- /#home -->
-<div>
+<div class="jumbotron jumbotron-extend">
+    <div class="container-fluid jumbotron-container">
+       <h2 class="page-title text-center">
+        簡単な診断で<br>あなたにぴったりの<br>おさかなレシピを<br>提案します
+        <h2>
+    </div>
+</div>
+<div class="container pt-5 text-center">
   <% if !logged_in?||current_user.guest? %>
-    <%= link_to '診断する(ゲストログインする)', guest_login_path, method: :post, class: 'button' %>
+    <%= link_to '診断する(ゲストログインする)', guest_login_path, method: :post, class: 'btn btn-info btn-lg' %>
   <% else %>
-    <%= link_to '診断する(ゲストログインしない)', new_question_evaluation_path, class: 'button' %>
+    <%= link_to '診断する(ゲストログインしない)', new_question_evaluation_path, class: 'btn btn-info btn-lg' %>
   <% end %>
+
+
+
+
+
+
+
+
+
+ <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading"><span class="text-muted">簡単診断♪</span></h2>
+        <p class="lead">今の気分や体調に関する質問に答えるだけで､あなたにぴったりのおさかなとレシピを提案します｡</p>
+      </div>
+      <div class="col-md-5">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading"><span class="text-muted">作りたいレシピがあればストック可能</span></h2>
+        <p class="lead">診断結果から気になるレシピがあれば､自分だけのストックリストを作成できます｡</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+    <hr class="featurette-divider">
+    <!-- /END THE FEATURETTES -->
+    </div>
+  </div>
 </div>

@@ -52,7 +52,7 @@ Question.seed(
   # ビタミンB12
   {
     id: 11,
-    text: '貧血気味だ｡'
+    text: 'たまに手足がしびれることがある｡'
   },
   # EPAとDHA
   {

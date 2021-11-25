@@ -1,121 +1,139 @@
-<div class="container">
-  <h1>診断結果</h1>
-  <h2>あなたのおすすめは..</h2>
-  <%= @fish.name %>です!<br>
-  <%= image_tag @fish.image_url %>
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="col-lg-8 offset-lg-2">
+      <h1>診断結果</h1>
+      <h2>あなたのおすすめは..</h2>
+       <br>
+      <h2 class="text-center"><%= @fish.name %>です!</h2>
+      <div>
+      <%= image_tag @fish.image_url, size: 600 %>
+      </div>
+  
+      <!-- メッセージ -->
+      <div style="background: #ffb6c1; border: 1px solid #ffb6c1; padding-left: 20px;">
+        <span style="color: white;">強いて言うなら､､</span>
+      </div>
+      <div style="border: 1px solid #ffb6c1; font-size: 100%; padding: 20px;">
+        <% if @max_nutrient_categories.has_key?("6") %>
+          亜鉛が不足しているかもしれません｡
+          亜鉛は体にとって重要な微量ミネラルです｡体を維持するのに必要な5大栄養素の一つで､自分の体では作り出すことができないため､外から摂取する必要があります｡
+          不足すると､毛が抜けやすくなったり､皮膚が荒れやすくなったり､全身に支障をきたします｡
+          摂取目安量は､成人男性が約11mg/日､女性が約8mg/日となっています｡
+        <br>
+        <br>
+        <% end %>
+        <% if @max_nutrient_categories.has_key?("7") %>
+          ビタミンAが不足しているかもしれません｡
+          ビタミンAは脂溶性ビタミンの一つです｡体に留まりやすいビタミンで､皮膚や粘膜の代謝を正常に保ったり､免疫力の保持といった働きをします｡
+          不足すると､皮膚や目､粘膜が乾燥しやすくなります｡また､薄暗いところで目が見えにくくなります｡ビタミンAは肝臓に溜められるので欠乏することは少ないですが､摂りすぎには注意しましょう｡
+          摂取目安量は､成人男性が約850μg/日､女性が約650μg/日となっています｡
+        <br>
+        <br>
+        <% end %>
+        <% if @max_nutrient_categories.has_key?("8") %>
+          ビタミンDが不足しているかもしれません｡
+          ビタミンDは食べ物から摂る方法と､日光を浴びて紫外線に作ってもらう方法があります｡
+          カルシウムやリンの吸収を手伝ってくれます｡
+          不足すると､骨粗しょう症や､糖尿病､うつ､免疫力低下といった症状が出ると言われています｡
+          摂取目安量は､成人男性､女性共に約8.5μg/日となっています｡
+        <br>
+        <br>
+        <% end %>
+        <% if @max_nutrient_categories.has_key?("9") %>
+          ビタミンEが不足かもしれません｡
+          ビタミンEは脂溶性ビタミンです｡血管を健康に保ったり､細胞の酸化を防ぐので､老化防止にも
+          効果があります｡通常の食事をしていると著しく不足することはほぼありませんが､食生活の乱れにより､不足すると血行不良により手足の冷え症に繋がります｡
+          摂取目安量は､成人男性が約6mg/日､女性が約5mg/日となっています｡sdgf
+        <br>
+        <br>
+        <% end %>
+        <% if @max_nutrient_categories.has_key?("10") %>
+          ビタミンB12が不足しているかもしれません｡
+          ビタミンB12は魚類､肉類などの食品に多く含まれています｡体内で血液が作られる際に重要な役割の栄養素です｡
+          比較的摂りやすく不足しにくいと言われていますが､不足している場合は､貧血や手足のしびれといった症状が出る場合があります｡しびれは神経系が絡むので早めに診てもらいましょう｡
+          摂取目安量は､成人男性､女性共に約2.4μg/日となっています｡
+        <br>
+        <br>
+        <% end %>
+        <% if @max_nutrient_categories.has_key?("11") %>
+          EPA・DHAが不足しているかもしれません｡
+          EPAやDHAはオメガ3脂肪酸に含まれています｡オメガ3脂肪酸とは食べ物からしか摂取できない必須脂肪酸のことです｡脳細胞に多く存在し､記憶や学習などの脳の健康を支えています｡
+          不足すると物忘れや､認知症などの､脳機能の衰えに影響すると言われています｡
+          EPAやDHAは魚以外の食べ物にはまず含まれていないので､意識して魚を食べましょう｡
+          摂取目安量は､成人男性が約2mg/日､女性が約1.6mg/日となっています｡
+        <% end %>
+      これらの診断は目安です｡あくまでもバランスのよい食事を心がけましょう｡
+      ※参考: 日本人の食事摂取基準(2020年版)
+      </div>
 
+      <!-- レーダーチャート -->
+      <div class="chart-container">
+        <canvas id="myChart" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label=<%= @fish.name.split %> ></canvas>
+      </div>
 
-  <!-- メッセージ -->
-  <div style="background: #ffb6c1; border: 1px solid #ffb6c1; padding-left: 20px;">
-    <span style="color: white;">強いて言うなら､､</span>
+      <!-- 栄養表 -->
+      <table border=”1″>可食部100gあたりの主な食品成分
+        <tr>
+          <th>カロリー</th>
+          <th>タンパク質</th>
+          <th>脂質</th>
+          <th>炭水化物</th>
+          <th>カルシウム</th>
+          <th>亜鉛</th>
+        </tr>
+        <tr>
+          <td><%= @fish_nutrients[0] %>kcal</td>
+          <td><%= @fish_nutrients[1] %>g</td>
+          <td><%= @fish_nutrients[2] %>g</td>
+          <td><%= @fish_nutrients[3] %>g</td>
+          <td><%= @fish_nutrients[4] %>mg</td>
+          <td><%= @fish_nutrients[5] %>mg</td>
+        </tr>
+        <tr>
+          <th>ビタミンA</th>
+          <th>ビタミンD</th>
+          <th>ビタミンE</th>
+          <th>ビタミンB12</th>
+          <th>EPA・DHA</th>
+        </tr>
+        <tr>
+          <td><%= @fish_nutrients[6] %>μg</td>
+          <td><%= @fish_nutrients[7] %>μg</td>
+          <td><%= @fish_nutrients[8] %>mg</td>
+          <td><%= @fish_nutrients[9] %>μg</td>
+          <td><%= @fish_nutrients[10] %>mg</td>
+        </tr>
+      </table>
+      <br>
+      
+      <!-- レシピ一覧 -->
+      <% @recipes.each do |recipe| %>
+        <h2><%= recipe.title %></h2>
+        <div class="card">
+          <div class="text-center">
+            <%= link_to recipe.url do %>
+              <%= image_tag recipe.image_url, size: "615x500", class: "text-center" %>
+            <% end %>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title">材料</h5>
+            <p class="card-text"><%= recipe.material %></p>
+            <h5 class="card-title">調理時間</h5>
+            <p class="card-text"><%= recipe.indication %></p>
+
+            <% if current_user.favorite?(recipe) %>
+              <%# N+1対策 そのrecipeのrecipesからcurrnet_userのレシピを取得(recipe起点) %>
+              <%= link_to 'お気に入り解除', favorite_path(recipe.favorites.find { |r| r.user_id == current_user.id }), method: :delete, class: 'btn btn-warning' %>
+            <% else %>
+              <%= link_to 'お気に入り', favorites_path(recipe_id: recipe), method: :post, class: 'btn btn-warning' %>
+            <% end %>
+          </div>
+        </div>
+        <br>
+      <% end %>
+    </div>
   </div>
-  <div style="border: 1px solid #ffb6c1; font-size: 100%; padding: 20px;">
-     <% if @max_nutrient_categories.has_key?("6") %>
-      亜鉛が不足しているかもしれません｡
-      亜鉛は体にとって重要な微量ミネラルです｡体を維持するのに必要な5大栄養素の一つで､自分の体では作り出すことができないため､外から摂取する必要があります｡
-      不足すると､毛が抜けやすくなったり､皮膚が荒れやすくなったり､全身に支障をきたします｡
-      摂取目安量は､成人男性が約11mg/日､女性が約8mg/日となっています｡
-    <br>
-    <% end %>
-     <% if @max_nutrient_categories.has_key?("7") %>
-      ビタミンAが不足しているかもしれません｡
-      ビタミンAは脂溶性ビタミンの一つです｡体に留まりやすいビタミンで､皮膚や粘膜の代謝を正常に保ったり､免疫力の保持といった働きをします｡
-      不足すると､皮膚や目､粘膜が乾燥しやすくなります｡また､薄暗いところで目が見えにくくなります｡ビタミンAは肝臓に溜められるので欠乏することは少ないですが､摂りすぎには注意しましょう｡
-      摂取目安量は､成人男性が約850μg/日､女性が約650μg/日となっています｡
-    <br>
-    <% end %>
-     <% if @max_nutrient_categories.has_key?("8") %>
-      ビタミンDが不足しているかもしれません｡
-      ビタミンDは食べ物から摂る方法と､日光を浴びて紫外線に作ってもらう方法があります｡
-      カルシウムやリンの吸収を手伝ってくれます｡
-      不足すると､骨粗しょう症や､糖尿病､うつ､免疫力低下といった症状が出ると言われています｡
-      摂取目安量は､成人男性､女性共に約8.5μg/日となっています｡
-    <br>
-    <% end %>
-     <% if @max_nutrient_categories.has_key?("9") %>
-      ビタミンEが不足かもしれません｡
-      ビタミンEは脂溶性ビタミンです｡血管を健康に保ったり､細胞の酸化を防ぐので､老化防止にも
-      効果があります｡通常の食事をしていると著しく不足することはほぼありませんが､食生活の乱れにより､不足すると血行不良により手足の冷え症に繋がります｡
-      摂取目安量は､成人男性が約6mg/日､女性が約5mg/日となっています｡sdgf
-    <br>
-    <% end %>
-     <% if @max_nutrient_categories.has_key?("10") %>
-      ビタミンB12が不足しているかもしれません｡
-      ビタミンB12は魚類､肉類などの食品に多く含まれています｡体内で血液が作られる際に重要な役割の栄養素です｡
-      比較的摂りやすく不足しにくいと言われていますが､不足している場合は､貧血や手足のしびれといった症状が出る場合があります｡しびれは神経系が絡むので早めに診てもらいましょう｡
-      摂取目安量は､成人男性､女性共に約2.4μg/日となっています｡
-    <br>
-    <% end %>
-     <% if @max_nutrient_categories.has_key?("11") %>
-      EPA・DHAが不足しているかもしれません｡
-      EPAやDHAはオメガ3脂肪酸に含まれています｡オメガ3脂肪酸とは食べ物からしか摂取できない必須脂肪酸のことです｡脳細胞に多く存在し､記憶や学習などの脳の健康を支えています｡
-      不足すると物忘れや､認知症などの､脳機能の衰えに影響すると言われています｡
-      EPAやDHAは魚以外の食べ物にはまず含まれていないので､意識して魚を食べましょう｡
-      摂取目安量は､成人男性が約2mg/日､女性が約1.6mg/日となっています｡
-    <% end %>
-  これらの診断は目安です｡あくまでもバランスのよい食事を心がけましょう｡
-  ※参考: 日本人の食事摂取基準(2020年版)
-  </div>
-
-
-
-  <!-- レーダーチャート -->
-  <div class="chart-container">
-    <canvas id="myChart" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" data-label=<%= @fish.name.split %> ></canvas>
-  </div>
-
-  <!-- 栄養表 -->
-  <table border=”1″>可食部100gあたりの主な食品成分
-    <tr>
-      <th>カロリー</th>
-      <th>タンパク質</th>
-      <th>脂質</th>
-      <th>炭水化物</th>
-      <th>カルシウム</th>
-      <th>亜鉛</th>
-    </tr>
-    <tr>
-      <td><%= @fish_nutrients[0] %>kcal</td>
-      <td><%= @fish_nutrients[1] %>g</td>
-      <td><%= @fish_nutrients[2] %>g</td>
-      <td><%= @fish_nutrients[3] %>g</td>
-      <td><%= @fish_nutrients[4] %>mg</td>
-      <td><%= @fish_nutrients[5] %>mg</td>
-    </tr>
-    <tr>
-      <th>ビタミンA</th>
-      <th>ビタミンD</th>
-      <th>ビタミンE</th>
-      <th>ビタミンB12</th>
-      <th>EPA・DHA</th>
-    </tr>
-    <tr>
-      <td><%= @fish_nutrients[6] %>μg</td>
-      <td><%= @fish_nutrients[7] %>μg</td>
-      <td><%= @fish_nutrients[8] %>mg</td>
-      <td><%= @fish_nutrients[9] %>μg</td>
-      <td><%= @fish_nutrients[10] %>mg</td>
-    </tr>
-  </table>
-
-  <!-- レシピ一覧 -->
-  <% @recipes.each do |recipe| %>
-    <% if current_user.favorite?(recipe) %>
-      <%# N+1対策 そのrecipeのrecipesからcurrnet_userのレシピを取得(recipe起点) %>
-      <%= link_to 'お気に入り解除', favorite_path(recipe.favorites.find { |r| r.user_id == current_user.id }), method: :delete, class: 'button' %>
-    <% else %>
-      <%= link_to 'お気に入り', favorites_path(recipe_id: recipe), method: :post, class: 'button' %>
-    <% end %>
-
-    <%= link_to recipe.url do %>
-      <%= image_tag recipe.image_url %>
-    <% end %>
-
-    <%= recipe.title %>
-    <%= recipe.material %>
-    <%= recipe.indication %>
-  <% end %>
 </div>
 
-<%= link_to 'トップへ戻る', root_path%>
+<%= link_to 'トップへ戻る', root_path, class: 'btn btn-secondary'%>
 <%= javascript_pack_tag 'chart' %>

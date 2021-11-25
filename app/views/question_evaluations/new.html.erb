@@ -1,18 +1,32 @@
-<%= form_with model: @form, url: question_evaluations_path, method: :post, local: true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= f.fields_for :question_evaluations do |i| %>
-    <%= i.radio_button :evaluation, 5 %>
-    <%= i.label :evaluation_5, "とてもあてはまる", {style: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 4 %>
-    <%= i.label :evaluation_4, "すこしあてはまる", {tyle: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 3, checked: true %>
-    <%= i.label :evaluation_3, "どちらでもない", {style: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 2 %>
-    <%= i.label :evaluation_2, "あまりあてはまらない", {style: "display: inline-block;"} %>
-    <%= i.radio_button :evaluation, 1 %>
-    <%= i.label :evaluation_1, "まったくあてはまらない", {style: "display: inline-block;"} %>
-  <% end %>
-  <%= f.submit  %>
-<% end %>
-
-<%= link_to 'トップへ戻る', root_path%>
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="text-center">
+      <%= form_with model: @form, url: question_evaluations_path, method: :post, local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <h1>診断ページ</h1>
+        <br>
+        <%= f.fields_for :question_evaluations do |i| %>
+          <div>
+            <h5><%= @questions[i.index].text %></h5>
+            とてもあてはまる
+            <%= i.radio_button :evaluation, 5, class: "radio-inline__input" %>
+            <%= i.label :evaluation_5, 5, class: "radio-inline__label" %>
+            <%= i.radio_button :evaluation, 4, class: "radio-inline__input" %>
+            <%= i.label :evaluation_4, 4, class: "radio-inline__label" %>
+            <%= i.radio_button :evaluation, 3, class: "radio-inline__input", checked: true %>
+            <%= i.label :evaluation_3, 3, class: "radio-inline__label" %>
+            <%= i.radio_button :evaluation, 2, class: "radio-inline__input" %>
+            <%= i.label :evaluation_2, 2, class: "radio-inline__label" %>
+            <%= i.radio_button :evaluation, 1, class: "radio-inline__input" %>
+            <%= i.label :evaluation_1, 1, class: "radio-inline__label" %>
+            まったくあてはまらない
+          </div>
+          <br>
+        <% end %>
+          <%= f.submit "診断結果へ♪", class: 'btn btn-info btn-lg' %>
+      <% end %>
+      <br>
+    </div>
+  </div>
+</div>
+<%= link_to 'トップへ戻る', root_path, class: 'btn btn-secondary' %>
