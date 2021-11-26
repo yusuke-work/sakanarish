@@ -33,6 +33,9 @@ gem 'sorcery'
 # Configuration
 gem 'dotenv-rails'
 
+# Http
+gem 'httpclient'
+
 group :development, :test do
   # CLI
   gem 'spring'
@@ -46,7 +49,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
   
-    # エラー画面カスタマイズ
+  # エラー画面カスタマイズ
   gem 'better_errors'
   gem 'binding_of_caller'
 
@@ -60,9 +63,6 @@ group :development, :test do
   # Table/Schema
     # shema情報書き出し
   gem 'annotate'
-
-  # Http
-  gem 'httpclient'
 end
 
 group :development do
