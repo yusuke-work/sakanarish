@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
 
     # JSONのリクエストボディのみ配列で取り出す
     response_bodys = category_ids.map do |category_id|
-                      sleep(1.5)
+                      sleep(2)
                       # httpクライアントのインスタンスを作成
                       http_client = HTTPClient.new
 
