@@ -33,8 +33,10 @@ gem 'sorcery'
 # Configuration
 gem 'dotenv-rails'
 
-# Http
-gem 'httpclient'
+group :development, :production, :test do
+  # Http
+  gem 'httpclient'
+end
 
 group :development, :test do
   # CLI
