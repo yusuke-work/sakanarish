@@ -131,6 +131,9 @@ class RecipesController < ApplicationController
         ]
         # original_recipe_idにunique制約を付けているので､同じレシピがあった場合はupdateする
         Recipe.upsert_all(recipes)
+
+        # postgre版(上書きinsert_allの場合は重複した行は無視する)
+        # Recipe.insert_all(recipes)
     end
   end
 end
